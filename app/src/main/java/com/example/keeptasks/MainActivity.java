@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intentTask = new Intent(getApplicationContext(), CreateTask.class);
         Intent intentSettings = new Intent(getApplicationContext(), Settings.class);
 
-         // screen Objects
+        // screen Objects
         Button btnadd = (Button) findViewById(R.id.btnadd);
         Button btnurgent = (Button) findViewById(R.id.btngourgent);
         Button btnnormal = (Button) findViewById(R.id.btngonormal);
