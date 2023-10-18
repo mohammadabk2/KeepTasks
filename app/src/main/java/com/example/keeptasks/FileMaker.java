@@ -2,19 +2,20 @@ package com.example.keeptasks;
 
 import java.io.File;
 import java.io.PrintWriter;
-import android.content.Context;
+//import android.content.Context;
 
 public class FileMaker {
     private File file;
     private String title, Note;
     private Boolean Urgent, DayBefore;
+    private final String path="/data/data/com.example.keeptasks/files/";
 
     public FileMaker(String TaskName, Boolean Urgent, Boolean DayBefore, String Note) {
         this.title = TaskName;
         this.Urgent = Urgent;
         this.DayBefore = DayBefore;
         this.Note = Note;
-        this.file = new File(TaskName + ".txt");
+        this.file = new File(this.path+TaskName + ".txt");
         newTaskFile(TaskName, Urgent, DayBefore, Note);
     }
 
@@ -25,7 +26,7 @@ public class FileMaker {
             }
             PrintWriter pw = new PrintWriter(this.file);
             pw.println(TaskName);
-            if (Urgent) {
+            if (this.Urgent) {
                 pw.println("Urgent");
             } else {
                 pw.println("Normal");
@@ -36,7 +37,7 @@ public class FileMaker {
             } else {
                 pw.println("Dont Remind Day Before");
             }
-            pw.println(TaskName);
+            pw.println(Note);
             pw.close();
         } catch (Exception e) {
 
@@ -44,7 +45,7 @@ public class FileMaker {
     }
 
     private void update() {
-        file.delete();
+        deleteFile();
         newTaskFile(this.title, this.Urgent, this.DayBefore, this.Note);
     }
 
@@ -67,6 +68,8 @@ public class FileMaker {
         this.Note = newNotes;
         update();
     }
-    // path it gets saved in /data/data/com.example.keeptasks/files
 
+    public void deleteFile(){
+        this.file.delete();
+    }
 }

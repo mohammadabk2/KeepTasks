@@ -9,17 +9,27 @@
 
 
     <Button
+        android:id="@+id/btnexit"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="44dp"
+        android:text="Exit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnsettings"
+        app:layout_constraintStart_toStartOf="@+id/btnsettings"
+        app:layout_constraintTop_toBottomOf="@+id/btnsettings" />
+
+    <Button
         android:id="@+id/btnsettings"
         android:layout_width="232dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="73dp"
         android:text="Settings "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnexit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.586"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btndone" />
+        app:layout_constraintTop_toBottomOf="@+id/btngourgent" />
 
     <TextView
         android:id="@+id/txttitle"
@@ -51,47 +61,43 @@
         android:textColor="#FFFFFF"
         app:icon="@drawable/ic_launcher_background"
         app:iconTint="#07F611"
-        app:layout_constraintBottom_toTopOf="@+id/btngourgent"
+        app:layout_constraintBottom_toTopOf="@+id/btnalltask"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txttitle"
         app:layout_constraintTop_toBottomOf="@+id/txttitle" />
+
+    <Button
+        android:id="@+id/btngonormal"
+        android:layout_width="193dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="6dp"
+        android:text="Normal "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btngourgent" />
 
     <Button
         android:id="@+id/btngourgent"
         android:layout_width="207dp"
         android:layout_height="0dp"
         android:layout_marginStart="6dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="208dp"
         android:text="Urgent "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btndone"
+        app:layout_constraintBottom_toTopOf="@+id/btnsettings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnadd" />
+        app:layout_constraintTop_toBottomOf="@+id/btnalltask" />
 
     <Button
-        android:id="@+id/btngonormal"
-        android:layout_width="193dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="11dp"
-        android:text="Normal "
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btndone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnadd" />
-
-    <Button
-        android:id="@+id/btndone"
+        android:id="@+id/btnalltask"
         android:layout_width="232dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="268dp"
         android:text="ALL "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btnsettings"
-        app:layout_constraintEnd_toEndOf="@+id/btngourgent"
-        app:layout_constraintStart_toEndOf="@+id/btngourgent"
-        app:layout_constraintTop_toBottomOf="@+id/btngourgent" />
+        app:layout_constraintBottom_toTopOf="@+id/btngourgent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnadd" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

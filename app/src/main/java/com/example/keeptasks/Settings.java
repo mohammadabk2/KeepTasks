@@ -16,12 +16,13 @@ public class Settings extends AppCompatActivity {
         //move between pages
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         // buttons
-        Button btnexit = (Button) findViewById(R.id.btnext);
+        Button btnexit = (Button) findViewById(R.id.btedit);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: create alarm and set in storage
                 Log.d("BUTTONS", "User tapped the Exit button");
+                finish();
                 startActivity(intent);
             }
         };

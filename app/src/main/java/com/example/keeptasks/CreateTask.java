@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.view.View;
 import android.util.Log;
 import android.content.Intent;
-import android.content.Context;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -14,18 +13,16 @@ import android.widget.Toast;
 public class CreateTask extends AppCompatActivity {
     private int count1 = 0;
     private int count2 = 0;
-    private static final int CREATE_CODE = 40;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createtask);
 
-        // Intents and Activities
+        // Intent
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
         // Screen Objects
-        Button btndn = (Button) findViewById(R.id.btndone);
+        Button btndn = (Button) findViewById(R.id.btnalltask);
         EditText txtName = (EditText) findViewById(R.id.taskfiled);
         Switch urgent = (Switch) findViewById(R.id.switchurgent);
         EditText txtNote = (EditText) findViewById(R.id.notefiled);
@@ -55,7 +52,7 @@ public class CreateTask extends AppCompatActivity {
                 // TODO: Date check if valid if empty and add it as an alarm
                 if (DateBefroe && count2 == 0) {// for dayBefore checkbox
                     count2++;
-                    FileMaker daybeforere = new FileMaker(Name + "Day Before Reminder", urgent.isChecked(), false,
+                    FileMaker daybeforere = new FileMaker(Name + " Day Before Reminder", urgent.isChecked(), false,
                             Note);// create new file
                     // create another notifaction the day before
                 }
@@ -63,6 +60,8 @@ public class CreateTask extends AppCompatActivity {
                 if (!Name.matches("") && DateisRight) {
                     FileMaker daybeforere = new FileMaker(Name, urgent.isChecked(), DateBefroe, Note);
                     startActivity(intent);
+                    finish();
+                    
                 }
             }
         };
