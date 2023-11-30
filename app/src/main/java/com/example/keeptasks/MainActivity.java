@@ -6,9 +6,11 @@ import android.widget.Button;
 import android.view.View;
 import android.util.Log;
 import android.content.Intent;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static ArrayList<String> list = new ArrayList<String>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +85,17 @@ public class MainActivity extends AppCompatActivity {
         };
         btnExit.setOnClickListener(exitlistener);
 
+        
     }
+
+    public void addTolist(String fileName){
+        this.list.add(fileName);
+    }
+
+    public static ArrayList<String> getList(){
+        return list;
+    }
+
+
 
 }

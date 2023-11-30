@@ -11,63 +11,85 @@
         android:id="@+id/btnclose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="35dp"
         android:gravity="center"
         android:text="Close"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="291dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintBottom_toTopOf="@+id/viewdate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/viewdate"
         android:layout_width="230dp"
-        android:layout_height="57dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="39dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="101dp" />
+        app:layout_constraintBottom_toTopOf="@+id/viewtitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnclose" />
 
     <Button
         android:id="@+id/btndelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="96dp"
+        android:layout_marginBottom="94dp"
         android:gravity="center"
         android:text="Delete"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="587dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btedit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewnote" />
 
     <TextView
         android:id="@+id/viewnote"
-        android:layout_width="411dp"
-        android:layout_height="109dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="167dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteY="311dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btndelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewtitle" />
 
     <TextView
         android:id="@+id/viewtitle"
         android:layout_width="206dp"
-        android:layout_height="92dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="22dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="197dp" />
+        app:layout_constraintBottom_toTopOf="@+id/viewnote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewdate" />
 
     <Button
         android:id="@+id/btedit"
-        android:layout_width="131dp"
-        android:layout_height="47dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="38dp"
         android:gravity="center"
         android:text="Edit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="242dp"
-        tools:layout_editor_absoluteY="587dp" />
+        app:layout_constraintBottom_toBottomOf="@+id/btndelete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btndelete"
+        app:layout_constraintTop_toTopOf="@+id/btndelete" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

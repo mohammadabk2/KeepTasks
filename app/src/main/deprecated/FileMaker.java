@@ -1,21 +1,24 @@
 package com.example.keeptasks;
-
+//probaibly delete
 import java.io.File;
 import java.io.PrintWriter;
 //import android.content.Context;
 
 public class FileMaker {
-    private File file;
+    private File file, pathFile;
     private String title, Note;
+    private String[] contentList;
     private Boolean Urgent, DayBefore;
-    private final String path="/data/data/com.example.keeptasks/files/";
+    private final String path = "/data/data/com.example.keeptasks/files/";
 
     public FileMaker(String TaskName, Boolean Urgent, Boolean DayBefore, String Note) {
         this.title = TaskName;
         this.Urgent = Urgent;
         this.DayBefore = DayBefore;
         this.Note = Note;
-        this.file = new File(this.path+TaskName + ".txt");
+        this.pathFile = new File(this.path);
+        this.contentList = pathFile.list();
+        this.file = new File(this.path + TaskName + ".txt");
         newTaskFile(TaskName, Urgent, DayBefore, Note);
     }
 
@@ -69,7 +72,11 @@ public class FileMaker {
         update();
     }
 
-    public void deleteFile(){
+    public void deleteFile() {
         this.file.delete();
+    }
+
+    public String[] getList() {
+        return this.contentList;
     }
 }
