@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Intent intentTask = new Intent(getApplicationContext(), CreateTask.class);
+        //add task
         Button btnadd = (Button) findViewById(R.id.btnadd);
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         btnadd.setOnClickListener(addlistener);
-
+        //
         Button btnAll = (Button) findViewById(R.id.btnalltask);
         Intent intentTasksAll = new Intent(getApplicationContext(), TaskBody.class);
         android.view.View.OnClickListener allgolistener = new View.OnClickListener() {
@@ -80,22 +81,8 @@ public class MainActivity extends AppCompatActivity {
                 // TODO:add create go to normal screen
                 finish();
                 Log.d("BUTTONS", "User tapped the Exit button");
-                // finish();
             }
         };
         btnExit.setOnClickListener(exitlistener);
-
-        
     }
-
-    public void addTolist(String fileName){
-        this.list.add(fileName);
-    }
-
-    public static ArrayList<String> getList(){
-        return list;
-    }
-
-
-
 }

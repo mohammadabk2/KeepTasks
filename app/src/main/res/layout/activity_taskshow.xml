@@ -26,7 +26,7 @@
         android:id="@+id/viewdate"
         android:layout_width="230dp"
         android:layout_height="0dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="88dp"
         android:layout_marginBottom="39dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
