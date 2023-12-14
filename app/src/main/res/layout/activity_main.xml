@@ -10,26 +10,29 @@
 
     <Button
         android:id="@+id/btnexit"
-        android:layout_width="237dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="53dp"
         android:layout_marginBottom="16dp"
         android:text="Exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnsettings"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnsettings" />
+        app:layout_constraintTop_toBottomOf="@+id/lv" />
 
     <Button
         android:id="@+id/btnsettings"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
         android:text="Settings "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btnexit"
-        app:layout_constraintEnd_toEndOf="@+id/btnexit"
-        app:layout_constraintStart_toStartOf="@+id/btnexit"
-        app:layout_constraintTop_toBottomOf="@+id/btngourgent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnexit"
+        app:layout_constraintTop_toBottomOf="@+id/txttitle" />
 
     <TextView
         android:id="@+id/txttitle"
@@ -38,12 +41,12 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginBottom="585dp"
         android:gravity="center"
         android:text="Welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btngonormal"
+        app:layout_constraintBottom_toTopOf="@+id/btnsettings"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,25 +72,24 @@
     <Button
         android:id="@+id/btngonormal"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="449dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="2dp"
         android:text="Normal "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/lv"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btngourgent"
-        app:layout_constraintTop_toBottomOf="@+id/txttitle" />
+        app:layout_constraintStart_toEndOf="@+id/btngourgent" />
 
     <Button
         android:id="@+id/btngourgent"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="17dp"
         android:text="Urgent "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btnsettings"
+        app:layout_constraintBottom_toTopOf="@+id/lv"
         app:layout_constraintEnd_toStartOf="@+id/btngonormal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnalltask" />
@@ -103,21 +105,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnadd" />
 
-    <ScrollView
-        android:id="@+id/viewscroll"
-        android:layout_width="0dp"
-        android:layout_height="220dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnsettings"
+    <ListView
+        android:id="@+id/lv"
+        android:layout_width="384dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnexit"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btngonormal">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintTop_toBottomOf="@+id/btngourgent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,41 +7,55 @@
     android:background="#393939"
     tools:context=".TaskBody">
 
-    <Button
-        android:id="@+id/btnclose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="35dp"
+    <TextView
+        android:id="@+id/viewurgent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="3dp"
         android:gravity="center"
-        android:text="Close"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/viewdate"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewtitle"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnclose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="138dp"
+        android:gravity="center"
+        android:text="Close"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btndelete"
+        app:layout_constraintTop_toBottomOf="@+id/btedit" />
 
     <TextView
         android:id="@+id/viewdate"
-        android:layout_width="230dp"
+        android:layout_width="209dp"
         android:layout_height="0dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="39dp"
+        android:layout_marginBottom="18dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/viewtitle"
+        app:layout_constraintBottom_toTopOf="@+id/viewnote"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnclose" />
+        app:layout_constraintTop_toBottomOf="@+id/viewurgent" />
 
     <Button
         android:id="@+id/btndelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginEnd="96dp"
-        android:layout_marginBottom="94dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginEnd="98dp"
+        android:layout_marginBottom="269dp"
         android:gravity="center"
         android:text="Delete"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -55,7 +69,7 @@
         android:id="@+id/viewnote"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="167dp"
+        android:layout_marginBottom="33dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
@@ -66,30 +80,34 @@
 
     <TextView
         android:id="@+id/viewtitle"
-        android:layout_width="206dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginBottom="106dp"
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/viewnote"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/viewurgent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewdate" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btedit"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginEnd="38dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="81dp"
         android:gravity="center"
         android:text="Edit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/btndelete"
+        app:layout_constraintBottom_toTopOf="@+id/btnclose"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btndelete"
-        app:layout_constraintTop_toTopOf="@+id/btndelete" />
+        app:layout_constraintTop_toBottomOf="@+id/viewnote" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

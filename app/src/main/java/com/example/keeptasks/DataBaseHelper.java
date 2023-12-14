@@ -68,7 +68,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String note = db.rawQuery(read_Table,null).getString(5);
                 TaskObj task = new TaskObj(title, date, urgent, daybefore, note);
                 list.add(task);
-            } while (db.rawQuery(read_Table,null).moveToFirst());
+            } while (db.rawQuery(read_Table,null).moveToNext());
         }
         db.rawQuery(read_Table,null).close();
         db.close();

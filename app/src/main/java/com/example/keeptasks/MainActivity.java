@@ -7,17 +7,23 @@ import android.view.View;
 import android.util.Log;
 import android.content.Intent;
 import java.util.ArrayList;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private static ArrayList<String> list = new ArrayList<String>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         Intent intentTask = new Intent(getApplicationContext(), CreateTask.class);
-        //add task
+        // add task
         Button btnadd = (Button) findViewById(R.id.btnadd);
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -29,17 +35,22 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         btnadd.setOnClickListener(addlistener);
-        //
+        // All Tasks
+        ListView  lv_task = (ListView) findViewById(R.id.lv);
         Button btnAll = (Button) findViewById(R.id.btnalltask);
-        Intent intentTasksAll = new Intent(getApplicationContext(), TaskBody.class);
+        // Intent intentTasksAll = new Intent(getApplicationContext(), TaskBody.class);
         android.view.View.OnClickListener allgolistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO:add create go to All screen
                 Log.d("BUTTONS", "User tapped the go to ALL button");
-                finish();
-                startActivity(intentTasksAll);
-                // finish();
+                DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+                List<TaskObj> everything = dbHelper.getEverything();
+                ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
+                        android.R.layout.simple_list_item_1, everything);
+                lv_task.setAdapter(taskAdapter);
 
+                // finish();
+                // startActivity(intentTasksAll);
             }
         };
         btnAll.setOnClickListener(allgolistener);
