@@ -12,4 +12,17 @@ public class TaskObj {
         this.DayBefore = DayBefore;
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+        String fin = "Title: " + this.title + this.date + "\n";
+        if (this.Urgent) {
+            fin += "!!!Urgent!!!";
+        }
+        if (this.DayBefore) {
+            fin += "\n" + " Will remind you the day before ";
+        }
+        fin += this.note;
+        return fin;
+    }
 }

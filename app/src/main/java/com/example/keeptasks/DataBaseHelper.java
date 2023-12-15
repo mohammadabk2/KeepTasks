@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.keeptasks.TaskObj;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -58,19 +59,20 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         // get data from database
         String read_Table = "SELECT * FROM " + table_name ; // add where id =
         SQLiteDatabase db = this.getReadableDatabase();
-        if (db.rawQuery(read_Table,null).moveToFirst()) {
+        Cursor cursor = db.rawQuery(read_Table,null);
+        if (cursor.moveToFirst()) {
             do {
-                int id = db.rawQuery(read_Table,null).getInt(0);
-                String title = db.rawQuery(read_Table,null).getString(1);
-                boolean urgent = db.rawQuery(read_Table,null).getInt(2) == 1 ? true : false;
-                String date = db.rawQuery(read_Table,null).getString(3);
-                boolean daybefore = db.rawQuery(read_Table,null).getInt(4) == 1 ? true : false;
-                String note = db.rawQuery(read_Table,null).getString(5);
+                int id = cursor.getInt(0);
+                String title = cursor.getString(1);
+                boolean urgent = cursor.getInt(2) == 1 ? true : false;
+                String date = cursor.getString(3);
+                boolean daybefore = cursor.getInt(4) == 1 ? true : false;
+                String note = cursor.getString(5);
                 TaskObj task = new TaskObj(title, date, urgent, daybefore, note);
                 list.add(task);
-            } while (db.rawQuery(read_Table,null).moveToNext());
+            } while (cursor.moveToNext());
         }
-        db.rawQuery(read_Table,null).close();
+        cursor.close();
         db.close();
         return list;
     }

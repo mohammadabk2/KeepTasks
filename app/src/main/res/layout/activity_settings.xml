@@ -45,7 +45,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="114dp"
         android:gravity="center"
-        android:text="Version info 0.5"
+        android:text="Version info 0.8"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btedit"
