@@ -15,7 +15,7 @@ public class TaskObj {
 
     @Override
     public String toString() {
-        String fin = "Title: " + this.title + this.date + "\n";
+        String fin = "Title: " + this.title + "   " +this.date + "\n";
         if (this.Urgent) {
             fin += "!!!Urgent!!!";
         }
