@@ -1,7 +1,6 @@
 package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
-//import main.java.com.example.keeptasks.TaskObj;
 import android.os.Bundle;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper = new DataBaseHelper(getApplicationContext());
                 dbHelper.delete_Task(clickedTask);
                 showEverything(dbHelper);
-                
+
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
             }
         });
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     // function to update the list view
     private void showEverything(DataBaseHelper dbH) {
         this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, dbH.getEverything());
+                android.R.layout.simple_list_item_1, dbH.getEverything(DataBaseHelper.table_name));
         this.lv_task.setAdapter(taskAdapter);
     }
 

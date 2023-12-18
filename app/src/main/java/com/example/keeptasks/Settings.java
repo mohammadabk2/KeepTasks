@@ -14,9 +14,6 @@ import android.content.Intent;
 public class Settings extends AppCompatActivity {
 
     // back end
-    private static ArrayList<String> list;
-    DataBaseHelper dbHelper;
-    ArrayAdapter taskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +24,7 @@ public class Settings extends AppCompatActivity {
         // front end
         Button btnexit = (Button) findViewById(R.id.btnexitsetting);
         Button btnhistory = (Button) findViewById(R.id.btnhistory);
-        ListView lv_history = (ListView) findViewById(R.id.lv2);
+        ListView lv_history = (ListView) findViewById(R.id.lv_history);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -41,15 +38,14 @@ public class Settings extends AppCompatActivity {
 
         android.view.View.OnClickListener historylistener = new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO: create alarm and set in storage
                 Log.d("BUTTONS", "User tapped the History button");
-                dbHelper = new DataBaseHelper(getApplicationContext());
-                taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                        android.R.layout.simple_list_item_1, dbHelper.getEverything());
+                DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+                ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
+                        android.R.layout.simple_list_item_1, dbHelper.getEverything(DataBaseHelper.table_history_name));
                 lv_history.setAdapter(taskAdapter);
 
             }
         };
-        btnexit.setOnClickListener(historylistener);
+        btnhistory.setOnClickListener(historylistener);
     }
 }

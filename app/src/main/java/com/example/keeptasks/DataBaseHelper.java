@@ -38,10 +38,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + " TEXT, " + COLUMN_urgent + " TEXT," + COLUMN_date + " TEXT, " + COLUMN_dayBefore
                 + " TEXT, " + COLUMN_note + " TEXT )";
         db.execSQL(create_First_Table);
-        // create the history database
-        String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
-                + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, "+ COLUMN_title +
-                 " TEXT, " + COLUMN_urgent + " TEXT," + COLUMN_date + " TEXT, " + COLUMN_dayBefore
+                // create the history database
+                String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
+                + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " + COLUMN_title
+                + " TEXT, " + COLUMN_urgent + " TEXT," + COLUMN_date + " TEXT, " + COLUMN_dayBefore
                 + " TEXT, " + COLUMN_note + " TEXT )";
         db.execSQL(create_Second_Table);
     }
@@ -65,10 +65,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
-    public List<TaskObj> getEverything() {
+    public List<TaskObj> getEverything(String table_name) {
         List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
         // get data from database
-        String read_Table = "SELECT * FROM " + table_name; // add where id =
+        String read_Table = "SELECT * FROM " + table_name;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(read_Table, null);
         if (cursor.moveToFirst()) {
