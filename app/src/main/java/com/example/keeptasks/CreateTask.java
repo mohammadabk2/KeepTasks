@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
-import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.io.IOException;
@@ -54,8 +53,9 @@ public class CreateTask extends AppCompatActivity {
                     // TODO: Date check if valid if empty and add it as an alarm and if so add to
                     // DataBase
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                    TaskObj task = new TaskObj(Name, Date, urgent, DateisRight, Note);
-                    boolean success = dbHelper.addOne(task);
+                    TaskObj task = new TaskObj(0,Name, Date, urgent, DateisRight, Note);
+                    boolean success = dbHelper.addOne(task,DataBaseHelper.table_name);
+                    Toast.makeText(getApplicationContext(), "Task Added", Toast.LENGTH_SHORT).show();
                     // Toast.makeText(getApplicationContext(), "Success = "+success, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();

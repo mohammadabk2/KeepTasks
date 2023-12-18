@@ -9,36 +9,48 @@
 
 
     <Button
-        android:id="@+id/btnexport"
+        android:id="@+id/btnhistory"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="404dp"
         android:gravity="center"
-        android:text="Export"
+        android:text="History"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewtitle"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/btnexport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="18dp"
+        android:gravity="center"
+        android:text="Export"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btnhistory"
+        app:layout_constraintStart_toEndOf="@+id/btnimport" />
 
     <Button
         android:id="@+id/btnimport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="404dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginEnd="72dp"
+        android:layout_marginBottom="18dp"
         android:gravity="center"
         android:text="Import"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewtitle"
-        app:layout_constraintVertical_bias="0.407" />
+        app:layout_constraintBottom_toTopOf="@+id/btnhistory"
+        app:layout_constraintEnd_toEndOf="@+id/btnhistory"
+        app:layout_constraintStart_toStartOf="@+id/txttitle" />
 
     <TextView
         android:id="@+id/txttitle"
@@ -47,40 +59,51 @@
         android:layout_marginStart="6dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="257dp"
         android:gravity="center"
         android:text="Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/viewtitle"
+        app:layout_constraintBottom_toTopOf="@+id/lv2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btedit"
+        android:id="@+id/btnexitsetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="404dp"
+        android:layout_marginBottom="44dp"
         android:gravity="center"
         android:text="Exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewtitle" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/viewtitle"
         android:layout_width="179dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="114dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="109dp"
         android:gravity="center"
         android:text="Version info 0.8"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btedit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/lv2"
+        android:layout_width="414dp"
+        android:layout_height="249dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="139dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txttitle" />
