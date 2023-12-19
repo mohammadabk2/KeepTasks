@@ -22,9 +22,9 @@ public class Settings extends AppCompatActivity {
         // move between pages
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         // front end
-        Button btnexit = (Button) findViewById(R.id.btnexitsetting);
+        Button btnexitsetting = (Button) findViewById(R.id.btnexitsetting);
         Button btnhistory = (Button) findViewById(R.id.btnhistory);
-        // Button btnclear = (Button) findViewById(R.id.btnclear);
+        Button btnclear = (Button) findViewById(R.id.btnclear);
         ListView lv_history = (ListView) findViewById(R.id.lv_history);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
@@ -35,7 +35,7 @@ public class Settings extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-        btnexit.setOnClickListener(exitlistener);
+        btnexitsetting.setOnClickListener(exitlistener);
 
         android.view.View.OnClickListener historylistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -54,16 +54,14 @@ public class Settings extends AppCompatActivity {
         };
         btnhistory.setOnClickListener(historylistener);
 
-        // android.view.View.OnClickListener clearlistener = new View.OnClickListener() {
-        //     public void onClick(View v) {
-        //         Log.d("BUTTONS", "User tapped the Clear History button");
-        //         // DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-        //         // dbHelper.clear_History();
-        //         // ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-        //         //         R.layout.lv_color_white, dbHelper.getEverything(DataBaseHelper.table_history_name));
-        //         // lv_history.setAdapter(taskAdapter);
-        //     }
-        // };
-        // btnclear.setOnClickListener(clearlistener);
+        android.view.View.OnClickListener clearlistener = new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the Clear History button");
+                DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+                dbHelper.clear_History();
+                lv_history.setAdapter(null);
+            }
+        };
+        btnclear.setOnClickListener(clearlistener);
     }
 }

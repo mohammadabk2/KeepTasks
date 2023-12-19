@@ -103,4 +103,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+
+    public boolean clear_History() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + table_history_name);
+        return true;
+    }
 }
