@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     // function to update the list view
     private void showEverything(DataBaseHelper dbH) {
         this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, dbH.getEverything(DataBaseHelper.table_name));
+                R.layout.lv_color_white, dbH.getEverything(DataBaseHelper.table_name));
         this.lv_task.setAdapter(taskAdapter);
     }
 

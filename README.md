@@ -30,7 +30,7 @@ and i am working on adding the ability to delete from the database and edit exis
 
 1. ~~make the listView auto update when something is added or removed~~
 1. ~~add the ability to complete tasks and delete them~~
-1. add a task histroy in the database to be viewed in settings or a button for it
+1. ~~add a task histroy in the database to be viewed in settings or a button for it~~
 1. add clear history button
 1. add functionality to the normal and urgent buttons
 1. add the valid date ability

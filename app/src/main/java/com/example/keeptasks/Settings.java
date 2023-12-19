@@ -24,6 +24,7 @@ public class Settings extends AppCompatActivity {
         // front end
         Button btnexit = (Button) findViewById(R.id.btnexitsetting);
         Button btnhistory = (Button) findViewById(R.id.btnhistory);
+        // Button btnclear = (Button) findViewById(R.id.btnclear);
         ListView lv_history = (ListView) findViewById(R.id.lv_history);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
@@ -39,13 +40,30 @@ public class Settings extends AppCompatActivity {
         android.view.View.OnClickListener historylistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the History button");
-                DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                        android.R.layout.simple_list_item_1, dbHelper.getEverything(DataBaseHelper.table_history_name));
-                lv_history.setAdapter(taskAdapter);
+                try{
+                    DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+                    ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
+                            R.layout.lv_color_white, dbHelper.getEverything(DataBaseHelper.table_history_name));
+                    lv_history.setAdapter(taskAdapter);
+                }
+                catch (Exception e){
+                    //
+                }
 
             }
         };
         btnhistory.setOnClickListener(historylistener);
+
+        // android.view.View.OnClickListener clearlistener = new View.OnClickListener() {
+        //     public void onClick(View v) {
+        //         Log.d("BUTTONS", "User tapped the Clear History button");
+        //         // DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+        //         // dbHelper.clear_History();
+        //         // ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
+        //         //         R.layout.lv_color_white, dbHelper.getEverything(DataBaseHelper.table_history_name));
+        //         // lv_history.setAdapter(taskAdapter);
+        //     }
+        // };
+        // btnclear.setOnClickListener(clearlistener);
     }
 }

@@ -8,19 +8,29 @@
     tools:context=".Settings">
 
 
+    <Button
+        android:id="@+id/btnexitsetting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:gravity="center"
+        android:text="Exit"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
+
     <TextView
         android:id="@+id/txttitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="61dp"
         android:layout_marginStart="6dp"
         android:layout_marginTop="29dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="86dp"
         android:gravity="center"
         android:text="Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +39,7 @@
         android:id="@+id/btnexitsetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
+        android:layout_marginStart="24dp"
         android:gravity="center"
         android:text="Exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -40,7 +50,7 @@
     <TextView
         android:id="@+id/viewtitle"
         android:layout_width="204dp"
-        android:layout_height="0dp"
+        android:layout_height="61dp"
         android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="Version info 0.88"
@@ -48,30 +58,30 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ListView
         android:id="@+id/lv_history"
         android:layout_width="0dp"
-        android:layout_height="375dp"
-        app:layout_constraintBottom_toTopOf="@+id/viewtitle"
+        android:layout_height="0dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginBottom="82dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout3" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="61dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="176dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="417dp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/viewtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txttitle">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/btnimport"
@@ -100,6 +110,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="#FFFFFF" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnclear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="216dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="Clear Hisotry"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

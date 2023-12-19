@@ -41,15 +41,16 @@ public class TaskObj {
 
     @Override
     public String toString() {
-        String fin = "Title: " + this.title + "   " + this.date + "\n";
+        String fin = this.title + "   ";
         if (this.Urgent) {
             fin += "!!!Urgent!!!";
         }
+        fin += "\n" + this.date;
         if (this.DayBefore) {
             fin += "\n" + " Will remind you the day before ";
         }
-        fin += this.note;
-        fin += "\n" + this.id;
+        fin += "\n" + this.note;
+        fin += "\n" + "\n" + this.id;
         return fin;
     }
 }

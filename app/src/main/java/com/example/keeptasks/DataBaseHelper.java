@@ -1,15 +1,14 @@
 package com.example.keeptasks;
 
-import android.content.Context;
+import java.util.ArrayList;
+import java.util.List;
 
+import android.content.Context;
 import com.example.keeptasks.TaskObj;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -32,17 +31,21 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // create the current database
         String create_First_Table = "CREATE TABLE IF NOT EXISTS " + table_name
-                + " (" + COLUMN_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " + COLUMN_title
-                + " TEXT, " + COLUMN_urgent + " TEXT," + COLUMN_date + " TEXT, " + COLUMN_dayBefore
-                + " TEXT, " + COLUMN_note + " TEXT )";
+                + " (" + COLUMN_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_title + " TEXT, " +
+                COLUMN_urgent + " TEXT," +
+                COLUMN_date + " TEXT, "
+                + COLUMN_dayBefore + " TEXT, "
+                + COLUMN_note + " TEXT )";
+        String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
+                + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_title + " TEXT, " +
+                COLUMN_urgent + " TEXT," +
+                COLUMN_date + " TEXT, "
+                + COLUMN_dayBefore + " TEXT, "
+                + COLUMN_note + " TEXT )";
         db.execSQL(create_First_Table);
-                // create the history database
-                String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
-                + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " + COLUMN_title
-                + " TEXT, " + COLUMN_urgent + " TEXT," + COLUMN_date + " TEXT, " + COLUMN_dayBefore
-                + " TEXT, " + COLUMN_note + " TEXT )";
         db.execSQL(create_Second_Table);
     }
 
