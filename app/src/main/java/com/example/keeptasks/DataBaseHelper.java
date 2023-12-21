@@ -1,5 +1,6 @@
 package com.example.keeptasks;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
+    // DataBase name
+    public static final String DB_name = "TasksDataBase.db";
 
     // main table
     public static final String table_name = "Tasks";
@@ -25,7 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_History_id = "Id";
 
     public DataBaseHelper(Context context) {
-        super(context, "TasksDataBase.db", null, 1);
+        super(context, DB_name, null, 1);
 
     }
 
@@ -109,4 +112,17 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + table_history_name);
         return true;
     }
+
+    // public boolean importDatabase() {
+    //     File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
+    //     File file = new File(dir,DB_name);
+    //     DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
+    //     downloadManager.addCompletedDownload(file.getName(), file.getName(), true, "database/db",file.getAbsolutePath(),file.length(),true);
+    //     return true;
+    // }
+
+    // public boolean setDatabase(){
+
+    // }
+
 }
