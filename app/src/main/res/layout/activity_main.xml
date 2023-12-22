@@ -11,46 +11,53 @@
     <Button
         android:id="@+id/btnexit"
         android:layout_width="184dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="644dp"
+        android:layout_marginBottom="19dp"
         android:text="Exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnalltask" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnsettings"
         android:layout_width="184dp"
         android:layout_height="70dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="113dp"
+        android:layout_marginTop="253dp"
+        android:layout_marginEnd="114dp"
+        android:layout_marginBottom="408dp"
         android:text="Settings "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/lv"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btngourgent" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txttitle"
-        android:layout_width="409dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="396dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="665dp"
         android:gravity="center"
         android:text="Welcome"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnalltask"
-        app:layout_constraintEnd_toStartOf="@+id/btnadd"
-        app:layout_constraintStart_toStartOf="@+id/btnadd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnadd"
-        android:layout_width="0dp"
-        android:layout_height="71dp"
-        android:layout_marginEnd="1dp"
+        android:layout_width="198dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="213dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginBottom="570dp"
         android:gravity="center"
         android:scaleType="fitXY"
         android:text="Add Task"
@@ -58,63 +65,73 @@
         android:textColor="#FFFFFF"
         app:icon="@drawable/ic_launcher_background"
         app:iconTint="#07F611"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnalltask"
-        app:layout_constraintTop_toBottomOf="@+id/txttitle" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/lv"
-        android:layout_width="0dp"
+        android:layout_width="403dp"
         android:layout_height="291dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="338dp"
+        android:layout_marginBottom="102dp"
         android:gravity="center"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnexit"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/btngourgent"
-        android:layout_width="0dp"
-        android:layout_height="74dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="191dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="216dp"
+        android:layout_marginTop="173dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="489dp"
         android:text="Urgent "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btngonormal"
-        app:layout_constraintTop_toBottomOf="@+id/btnadd" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnalltask"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="495dp"
+        android:layout_width="199dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="93dp"
+        android:layout_marginEnd="198dp"
+        android:layout_marginBottom="570dp"
         android:text="ALL "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toTopOf="@+id/btnexit"
-        app:layout_constraintEnd_toStartOf="@+id/btnadd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txttitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btngonormal"
-        android:layout_width="0dp"
+        android:layout_width="191dp"
         android:layout_height="75dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="167dp"
+        android:layout_marginEnd="204dp"
+        android:layout_marginBottom="489dp"
         android:text="Normal "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toStartOf="@+id/btngourgent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnalltask" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
