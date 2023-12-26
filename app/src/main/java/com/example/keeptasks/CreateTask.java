@@ -15,12 +15,11 @@ import android.widget.Switch;
 import android.widget.Toast;
 import android.database.sqlite.SQLiteDatabase;
 
-import java.io.IOException;
-
 import com.example.keeptasks.DataBaseHelper;
 import com.example.keeptasks.MainActivity;
 import com.example.keeptasks.TaskObj;
 
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
@@ -28,14 +27,12 @@ public class CreateTask extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
     private Button btnDate;
+    private Date dateObj = new Date();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_createtask);
-        // date test
-        // initDatePicker();
-        // btnDate.setText(getTodayDate());
         // Intent
         Intent intent = new Intent(getApplicationContext(), MainActivity.class); // return to Home Page
         // On Screen Objects
@@ -46,6 +43,7 @@ public class CreateTask extends AppCompatActivity {
         EditText txtNote = (EditText) findViewById(R.id.notefiled);// The Note Field
         Switch dayBeforeS = (Switch) findViewById(R.id.switchremind);// The Day Before Switch
         btnDate = (Button) findViewById(R.id.dateinput);// The Text Field
+        btnDate.setText(dateObj.getTodayDate());
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Finish Button Listener
             public void onClick(View v) {
@@ -63,8 +61,8 @@ public class CreateTask extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Name is empty", Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO: check if the current data is valid
-                    // TODO: Date check if valid if empty and add it as an alarm and if so add to
-                    // DataBase
+                    // TODO: add it as an alarm and a notfication
+                    // Added to DataBase
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateisRight, Note);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
@@ -91,44 +89,23 @@ public class CreateTask extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the calender button");
                 initDatePicker();
-                openDatePicker(v);
+                datePickerDialog.show();
             }
         };
         btnDate.setOnClickListener(popuplistener);
-
     }
 
     private void initDatePicker() {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                String date = makeDateString(day, month + 1, year);
-                btnDate.setText(date);
+                btnDate.setText(dateObj.makeDateString(day, month + 1, year));
             }
         };
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
         int month = cal.get(Calendar.MONTH) + 1; // it starts at zero
         int day = cal.get(Calendar.DAY_OF_MONTH);
-
         datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
-        // openDatePicker();
     }
-
-    private String makeDateString(int day, int month, int year) { // can remove when done
-        return day + "/" + month + "/" + year;
-    }
-
-    public void openDatePicker(View view) {
-        datePickerDialog.show();
-    }
-
-    public String getTodayDate() { // can remove when done
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH) + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
-
 }
