@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     // backend
     private static ArrayList<String> list;
+    private String task_complete = "Task Done";
     ListView lv_task;
     DataBaseHelper dbHelper;
     ArrayAdapter taskAdapter;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper.delete_Task(clickedTask);
                 showEverything(dbHelper);
 
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
             }
         });
         // settings

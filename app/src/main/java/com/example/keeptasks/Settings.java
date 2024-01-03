@@ -1,6 +1,8 @@
 package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.content.Intent;
 public class Settings extends AppCompatActivity {
 
     // back end
+    private static final int REQUEST_WRITE_PERMISSION = 786;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,13 +66,17 @@ public class Settings extends AppCompatActivity {
         android.view.View.OnClickListener importlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Import button");
+                // requestPermission();
                 fileChooser();
+
+
             }
         };
 
         android.view.View.OnClickListener exportlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Expotr button");
+                // requestPermission();
                 fileChooser();
             }
         };
@@ -83,6 +90,7 @@ public class Settings extends AppCompatActivity {
 
     // TODO: grab the file after choosing it
     private void fileChooser() {
+//        requestPermission();
         Intent intent_file = new Intent(Intent.ACTION_GET_CONTENT);
         intent_file.setType("*/*");
         intent_file.addCategory(Intent.CATEGORY_OPENABLE);
@@ -92,14 +100,13 @@ public class Settings extends AppCompatActivity {
             Log.d("BUTTONS", "No file explorer found");
         }
     }
-}
 
-//     @Override
-//     protected void onActivityResult(int requestCode, int resultCode, @Nullable @org.jetbrains.annotations.Nullable Intent data){
-//         if(requestCode == 100 && resultCode == RESULT_OK && data !=null){
-//             URI uri = data.getData();
-//             String path = uri.getPath();
-//             File file = new File(path);
-            
-//         }
-//     }
+    // private void requestPermission() {
+    //     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    //         requestPermissions(new String[] { android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
+    //                 REQUEST_WRITE_PERMISSION);
+    //     } else {
+    //         fileChooser();
+    //     }
+    // }
+}

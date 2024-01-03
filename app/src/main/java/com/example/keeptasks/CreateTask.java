@@ -28,6 +28,8 @@ public class CreateTask extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button btnDate;
     private Date dateObj = new Date();
+    private String task_Added_Message = "Task Added ";
+    private String name_Empty_Message= "Name is empty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +60,7 @@ public class CreateTask extends AppCompatActivity {
                 Boolean DateisRight = false;
 
                 if (Name.matches("")) {// if Title is empty
-                    Toast.makeText(getApplicationContext(), "Name is empty", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO: check if the current data is valid
                     // TODO: add it as an alarm and a notfication
@@ -66,7 +68,7 @@ public class CreateTask extends AppCompatActivity {
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateisRight, Note);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
-                    Toast.makeText(getApplicationContext(), "Task Added", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), task_Added_Message + success, Toast.LENGTH_SHORT).show();
                     // Toast.makeText(getApplicationContext(), "Success = "+success,
                     // Toast.LENGTH_SHORT).show();
                     startActivity(intent);

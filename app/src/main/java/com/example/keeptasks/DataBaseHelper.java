@@ -1,6 +1,7 @@
 package com.example.keeptasks;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public DataBaseHelper(Context context) {
         super(context, DB_name, null, 1);
-
     }
 
     @Override
@@ -112,17 +112,5 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + table_history_name);
         return true;
     }
-
-    // public boolean importDatabase() {
-    //     File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS));
-    //     File file = new File(dir,DB_name);
-    //     DownloadManager downloadManager = (DownloadManager) context.getSystemService(DOWNLOAD_SERVICE);
-    //     downloadManager.addCompletedDownload(file.getName(), file.getName(), true, "database/db",file.getAbsolutePath(),file.length(),true);
-    //     return true;
-    // }
-
-    // public boolean setDatabase(){
-
-    // }
 
 }
