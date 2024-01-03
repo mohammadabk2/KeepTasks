@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     // backend
     private static ArrayList<String> list;
-    private String task_complete = "Task Done";
+    private String task_complete = "Task Completed";
     ListView lv_task;
     DataBaseHelper dbHelper;
     ArrayAdapter taskAdapter;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     // android.view.View.OnClickListener urgentgolistener = new
     // View.OnClickListener() {
     // public void onClick(View v) {
-    // // TODO:add create go to Urgent screen
+    // // TODO: filter to urgent only
     // Log.d("BUTTONS", "User tapped the go to Urgent button");
     // }
     // };
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     // android.view.View.OnClickListener normalgolistener = new
     // View.OnClickListener() {
     // public void onClick(View v) {
-    // // TODO:add create go to normal screen
+    // // TODO:filter to normal only
     // Log.d("BUTTONS", "User tapped the go to normal button");
     // }
     // };

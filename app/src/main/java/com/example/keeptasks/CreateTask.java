@@ -49,7 +49,6 @@ public class CreateTask extends AppCompatActivity {
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Finish Button Listener
             public void onClick(View v) {
-                // TODO: create Task and save it
                 Log.d("BUTTONS", "User tapped the Finish button");
                 String Name = txtName.getText().toString();// Get the Title
                 String Note = txtNote.getText().toString();// Get the Note
@@ -69,8 +68,6 @@ public class CreateTask extends AppCompatActivity {
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateisRight, Note);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
                     Toast.makeText(getApplicationContext(), task_Added_Message + success, Toast.LENGTH_SHORT).show();
-                    // Toast.makeText(getApplicationContext(), "Success = "+success,
-                    // Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();
                 }

@@ -34,7 +34,7 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btndelete"
-        app:layout_constraintTop_toBottomOf="@+id/btnexitsetting" />
+        app:layout_constraintTop_toBottomOf="@+id/btnexitsettings" />
 
     <TextView
         android:id="@+id/viewdate"
@@ -61,7 +61,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnexitsetting"
+        app:layout_constraintEnd_toStartOf="@+id/btnexitsettings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewnote" />
 
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnexitsetting"
+        android:id="@+id/btnexitsettings"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginEnd="30dp"

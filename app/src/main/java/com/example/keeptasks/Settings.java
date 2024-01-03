@@ -22,12 +22,15 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         // move between pages
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        Intent intentabout = new Intent(getApplicationContext(), about.class);
+
         // front end
-        Button btnexitsetting = (Button) findViewById(R.id.btnexitsetting);
+        Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
         Button btnhistory = (Button) findViewById(R.id.btnhistory);
         Button btnclear = (Button) findViewById(R.id.btnclear);
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
+        Button btnabout = (Button) findViewById(R.id.btnaboutapp);
         ListView lv_history = (ListView) findViewById(R.id.lv_history);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
@@ -69,7 +72,6 @@ public class Settings extends AppCompatActivity {
                 // requestPermission();
                 fileChooser();
 
-
             }
         };
 
@@ -80,17 +82,26 @@ public class Settings extends AppCompatActivity {
                 fileChooser();
             }
         };
+        android.view.View.OnClickListener aboutlistener = new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO: create alarm and set in storage
+                Log.d("BUTTONS", "User tapped the about button");
+                finish();
+                startActivity(intentabout);
+            }
+        };
         // set to buttons
         btnexitsetting.setOnClickListener(exitlistener);
         btnhistory.setOnClickListener(historylistener);
         btnclear.setOnClickListener(clearlistener);
         btnimport.setOnClickListener(importlistener);
         btnexport.setOnClickListener(exportlistener);
+        btnabout.setOnClickListener(aboutlistener);
     }
 
     // TODO: grab the file after choosing it
     private void fileChooser() {
-//        requestPermission();
+        // requestPermission();
         Intent intent_file = new Intent(Intent.ACTION_GET_CONTENT);
         intent_file.setType("*/*");
         intent_file.addCategory(Intent.CATEGORY_OPENABLE);
@@ -102,11 +113,12 @@ public class Settings extends AppCompatActivity {
     }
 
     // private void requestPermission() {
-    //     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    //         requestPermissions(new String[] { android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
-    //                 REQUEST_WRITE_PERMISSION);
-    //     } else {
-    //         fileChooser();
-    //     }
+    // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+    // requestPermissions(new String[] {
+    // android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
+    // REQUEST_WRITE_PERMISSION);
+    // } else {
+    // fileChooser();
+    // }
     // }
 }

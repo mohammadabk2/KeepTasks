@@ -29,7 +29,7 @@ public class TaskBody extends AppCompatActivity {
         // Intent
         Intent intentMain = new Intent(getApplicationContext(), MainActivity.class);
         // Screen Objects
-        Button btnEdit = (Button) findViewById(R.id.btnexitsetting);
+        Button btnEdit = (Button) findViewById(R.id.btnexitsettings);
         Button btnclose = (Button) findViewById(R.id.btnclose);
         Button btndelete = (Button) findViewById(R.id.btndelete);
         TextView vTitle = (TextView) findViewById(R.id.viewtitle);
