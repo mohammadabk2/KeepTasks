@@ -2,6 +2,7 @@ package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,10 +37,13 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DataBaseHelper(getApplicationContext());
         lv_task = (ListView) findViewById(R.id.lv);
         showEverything(dbHelper);
-        // frontend
-        Button btnadd, btnAll, btngosetting, btnExit;
+        // on Screen
+        Button btnpopup = (Button) findViewById(R.id.btnpopup);
+        Button btnadd = (Button) findViewById(R.id.btnadd);
+//        Button btnAll = (Button) findViewById(R.id.btnalltask);
+        Button btngosetting = (Button) findViewById(R.id.btnsettings);
+        Button btnExit = (Button) findViewById(R.id.btnexit);
         // add Task
-        btnadd = (Button) findViewById(R.id.btnadd);
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO:add create alarm function here
@@ -49,15 +54,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // All Tasks
-        btnAll = (Button) findViewById(R.id.btnalltask);
-        android.view.View.OnClickListener allgolistener = new View.OnClickListener() {
-            public void onClick(View v) {
-                // TODO:add create go to All screen
-                Log.d("BUTTONS", "User tapped the go to ALL button");
-                dbHelper = new DataBaseHelper(getApplicationContext());
-                showEverything(dbHelper);
-            }
-        };
+//        android.view.View.OnClickListener allgolistener = new View.OnClickListener() {
+//            public void onClick(View v) {
+//                // TODO:add create go to All screen
+//                Log.d("BUTTONS", "User tapped the go to ALL button");
+//                dbHelper = new DataBaseHelper(getApplicationContext());
+//                showEverything(dbHelper);
+//            }
+//        };
         // delete Task
         lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -72,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // settings
-        btngosetting = (Button) findViewById(R.id.btnsettings);
         android.view.View.OnClickListener settingslistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO:add create go to normal screen
@@ -81,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // Exit app
-        btnExit = (Button) findViewById(R.id.btnexit);
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO:add create go to normal screen
@@ -90,12 +92,36 @@ public class MainActivity extends AppCompatActivity {
                 System.exit(0);
             }
         };
+        // Menu button
+        android.view.View.OnClickListener Menulistener = new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the Menu button");
+                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
+                popupMenu.getMenuInflater().inflate(R.menu.sortmenue, popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if (item.getItemId() == R.id.item_all) {
+                            Log.d("BUTTONS", "User tapped the go to ALL button");
+                            dbHelper = new DataBaseHelper(getApplicationContext());
+                            showEverything(dbHelper);
+                            return true;
+                        }
+                        // TODO: add urgent and normal
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        };
 
         // Set Listener
-        btnAll.setOnClickListener(allgolistener);
+//        btnAll.setOnClickListener(allgolistener); // remove later
         btnadd.setOnClickListener(addlistener);
         btngosetting.setOnClickListener(settingslistener);
         btnExit.setOnClickListener(exitlistener);
+        btnpopup.setOnClickListener(Menulistener);
+
     }
 
     // function to update the list view
@@ -104,24 +130,4 @@ public class MainActivity extends AppCompatActivity {
                 R.layout.lv_color_white, dbH.getEverything(DataBaseHelper.table_name));
         this.lv_task.setAdapter(taskAdapter);
     }
-
-    // Button btnurgent = (Button) findViewById(R.id.btngourgent);
-    // android.view.View.OnClickListener urgentgolistener = new
-    // View.OnClickListener() {
-    // public void onClick(View v) {
-    // // TODO: filter to urgent only
-    // Log.d("BUTTONS", "User tapped the go to Urgent button");
-    // }
-    // };
-    // btnurgent.setOnClickListener(urgentgolistener);
-
-    // Button btnnormal = (Button) findViewById(R.id.btngonormal);
-    // android.view.View.OnClickListener normalgolistener = new
-    // View.OnClickListener() {
-    // public void onClick(View v) {
-    // // TODO:filter to normal only
-    // Log.d("BUTTONS", "User tapped the go to normal button");
-    // }
-    // };
-    // btnnormal.setOnClickListener(normalgolistener);
 }
