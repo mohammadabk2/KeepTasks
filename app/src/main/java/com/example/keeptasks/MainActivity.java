@@ -36,49 +36,36 @@ public class MainActivity extends AppCompatActivity {
         // backend start
         dbHelper = new DataBaseHelper(getApplicationContext());
         lv_task = (ListView) findViewById(R.id.lv);
-        showEverything(dbHelper);
+        showEverything(dbHelper, DataBaseHelper.table_name);
         // on Screen
         Button btnpopup = (Button) findViewById(R.id.btnpopup);
         Button btnadd = (Button) findViewById(R.id.btnadd);
-//        Button btnAll = (Button) findViewById(R.id.btnalltask);
+        // Button btnAll = (Button) findViewById(R.id.btnalltask);
         Button btngosetting = (Button) findViewById(R.id.btnsettings);
         Button btnExit = (Button) findViewById(R.id.btnexit);
         // add Task
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO:add create alarm function here
                 Log.d("BUTTONS", "User tapped the add button");
-                showEverything(dbHelper);
+                showEverything(dbHelper, DataBaseHelper.table_name);
                 finish();
                 startActivity(intentTask);
             }
         };
-        // All Tasks
-//        android.view.View.OnClickListener allgolistener = new View.OnClickListener() {
-//            public void onClick(View v) {
-//                // TODO:add create go to All screen
-//                Log.d("BUTTONS", "User tapped the go to ALL button");
-//                dbHelper = new DataBaseHelper(getApplicationContext());
-//                showEverything(dbHelper);
-//            }
-//        };
-        // delete Task
+        // Compelte Task
         lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
-
                 dbHelper = new DataBaseHelper(getApplicationContext());
                 dbHelper.delete_Task(clickedTask);
-                showEverything(dbHelper);
-
+                showEverything(dbHelper, DataBaseHelper.table_name);
                 Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
             }
         });
         // settings
         android.view.View.OnClickListener settingslistener = new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO:add create go to normal screen
                 Log.d("BUTTONS", "User tapped the go to Settings button");
                 startActivity(intentSettings);
             }
@@ -86,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         // Exit app
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
-                // TODO:add create go to normal screen
                 Log.d("BUTTONS", "User tapped the Exit button");
                 finish();
                 System.exit(0);
@@ -101,14 +87,16 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        dbHelper = new DataBaseHelper(getApplicationContext());
+                        String toShow = "";
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the go to ALL button");
-                            dbHelper = new DataBaseHelper(getApplicationContext());
-                            showEverything(dbHelper);
-                            return true;
+                            toShow = DataBaseHelper.table_name;
+                        } else if (item.getItemId() == R.id.item_history) {
+                            toShow = DataBaseHelper.table_history_name;
                         }
-                        // TODO: add urgent and normal
-                        return false;
+                        showEverything(dbHelper, toShow);
+                        return true;
                     }
                 });
                 popupMenu.show();
@@ -116,18 +104,16 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // Set Listener
-//        btnAll.setOnClickListener(allgolistener); // remove later
         btnadd.setOnClickListener(addlistener);
         btngosetting.setOnClickListener(settingslistener);
         btnExit.setOnClickListener(exitlistener);
         btnpopup.setOnClickListener(Menulistener);
-
     }
 
     // function to update the list view
-    private void showEverything(DataBaseHelper dbH) {
+    private void showEverything(DataBaseHelper dbH, String tableName) {
         this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                R.layout.lv_color_white, dbH.getEverything(DataBaseHelper.table_name));
+                R.layout.lv_color_white, dbH.getEverything(tableName));
         this.lv_task.setAdapter(taskAdapter);
     }
 }

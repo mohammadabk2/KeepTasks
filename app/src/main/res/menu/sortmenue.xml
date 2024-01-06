@@ -9,10 +9,10 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textStyle="bold"
-        android:title="All" />
+        android:title="\t\t\t\t\t\t\t\t\tAll" />
     <item
         android:id="@+id/item_urgent"
-        android:title="Urgent"
+        android:title="\t\t\t\t\t\t\t\Urgent"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"
         android:gravity="center"
@@ -20,7 +20,15 @@
         />
     <item
         android:id="@+id/item_normal"
-        android:title="Normal"
+        android:title="\t\t\t\t\t\t\t\Normal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textStyle="bold"
+        />
+    <item
+        android:id="@+id/item_history"
+        android:title="\t\t\t\t\t\t\Completed"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textAlignment="center"
         android:gravity="center"

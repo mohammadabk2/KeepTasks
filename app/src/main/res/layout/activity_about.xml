@@ -3,33 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="#393939"
-    android:layout_height="match_parent">
-    
+    android:layout_height="match_parent"
+    android:background="#393939">
+
 
     <TextView
         android:id="@+id/viewtitle"
         android:layout_width="204dp"
-        android:layout_height="58dp"
+        android:layout_height="0dp"
         android:layout_marginTop="300dp"
         android:layout_marginEnd="90dp"
+        android:layout_marginBottom="308dp"
         android:gravity="center"
-        android:text="Version info 0.881"
+        android:text="Version 0.81"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/btnexitabout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnexitabout"
-        android:layout_width="140dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="144dp"
-        android:layout_marginTop="308dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="7dp"
         android:gravity="center"
         android:text="Exit"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewtitle" />
 

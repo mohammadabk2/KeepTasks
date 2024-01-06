@@ -26,12 +26,10 @@ public class Settings extends AppCompatActivity {
 
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
-        Button btnhistory = (Button) findViewById(R.id.btnhistory);
         Button btnclear = (Button) findViewById(R.id.btnclear);
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);
-        ListView lv_history = (ListView) findViewById(R.id.lv_history);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -41,28 +39,11 @@ public class Settings extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-
-        android.view.View.OnClickListener historylistener = new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the History button");
-                try {
-                    DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                    ArrayAdapter taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
-                            R.layout.lv_color_white, dbHelper.getEverything(DataBaseHelper.table_history_name));
-                    lv_history.setAdapter(taskAdapter);
-                } catch (Exception e) {
-                    //
-                }
-
-            }
-        };
-
         android.view.View.OnClickListener clearlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Clear History button");
                 DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                 dbHelper.clear_History();
-                lv_history.setAdapter(null);
             }
         };
 
@@ -92,7 +73,6 @@ public class Settings extends AppCompatActivity {
         };
         // set to buttons
         btnexitsetting.setOnClickListener(exitlistener);
-        btnhistory.setOnClickListener(historylistener);
         btnclear.setOnClickListener(clearlistener);
         btnimport.setOnClickListener(importlistener);
         btnexport.setOnClickListener(exportlistener);
