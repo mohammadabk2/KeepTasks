@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
@@ -28,8 +29,8 @@ public class CreateTask extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button btnDate;
     private Date dateObj = new Date();
-    private String task_Added_Message = "Task Added ";
-    private String name_Empty_Message= "Name is empty";
+    private final String task_Added_Message = "Task Added ";
+    private final String name_Empty_Message = "Name is empty";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,11 @@ public class CreateTask extends AppCompatActivity {
         Switch dayBeforeS = (Switch) findViewById(R.id.switchremind);// The Day Before Switch
         btnDate = (Button) findViewById(R.id.dateinput);// The Text Field
         btnDate.setText(dateObj.getTodayDate());
+        // set hints
+        txtName.setHintTextColor(Color.WHITE);
+        txtName.setHint("Task Title");
+        txtNote.setHintTextColor(Color.WHITE);
+        txtNote.setHint("Notes");
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Finish Button Listener
             public void onClick(View v) {
@@ -73,8 +79,7 @@ public class CreateTask extends AppCompatActivity {
                 }
             }
         };
-        btndn.setOnClickListener(donelistener);
-
+        // Listeners
         android.view.View.OnClickListener cancellistener = new View.OnClickListener() { // Finish Button Listener
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the cancel button");
@@ -82,7 +87,6 @@ public class CreateTask extends AppCompatActivity {
                 finish();
             }
         };
-        btncln.setOnClickListener(cancellistener);
 
         android.view.View.OnClickListener popuplistener = new View.OnClickListener() { // Finish Button Listener
             public void onClick(View v) {
@@ -91,6 +95,9 @@ public class CreateTask extends AppCompatActivity {
                 datePickerDialog.show();
             }
         };
+        // set Listener
+         btndn.setOnClickListener(donelistener);
+        btncln.setOnClickListener(cancellistener);
         btnDate.setOnClickListener(popuplistener);
     }
 

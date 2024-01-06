@@ -51,16 +51,15 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Import button");
                 // requestPermission();
-                fileChooser();
+                //TODO:
 
             }
         };
-
+        
         android.view.View.OnClickListener exportlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Expotr button");
-                // requestPermission();
-                fileChooser();
+                //TODO:
             }
         };
         android.view.View.OnClickListener aboutlistener = new View.OnClickListener() {
@@ -78,27 +77,4 @@ public class Settings extends AppCompatActivity {
         btnexport.setOnClickListener(exportlistener);
         btnabout.setOnClickListener(aboutlistener);
     }
-
-    // TODO: grab the file after choosing it
-    private void fileChooser() {
-        // requestPermission();
-        Intent intent_file = new Intent(Intent.ACTION_GET_CONTENT);
-        intent_file.setType("*/*");
-        intent_file.addCategory(Intent.CATEGORY_OPENABLE);
-        try {
-            startActivityForResult(Intent.createChooser(intent_file, "Select a Database file"), 100);
-        } catch (Exception e) {
-            Log.d("BUTTONS", "No file explorer found");
-        }
-    }
-
-    // private void requestPermission() {
-    // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-    // requestPermissions(new String[] {
-    // android.Manifest.permission.WRITE_EXTERNAL_STORAGE },
-    // REQUEST_WRITE_PERMISSION);
-    // } else {
-    // fileChooser();
-    // }
-    // }
 }
