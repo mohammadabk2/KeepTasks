@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Keep Tasks</string>
+    <string name="empty_icon_only" > 1</string>
+
 </resources>

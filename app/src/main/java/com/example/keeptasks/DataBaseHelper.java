@@ -136,23 +136,35 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public List<TaskObj> search(String query) {
+        List<com.example.keeptasks.TaskObj> list_searched = new ArrayList<>();
+        List<com.example.keeptasks.TaskObj> list_all = getEverything(table_name);
+        int size = list_all.size();
+        for (int i = 0; i < size; i++) { // go over each task and check if it is a match
+            if (list_all.get(i).toString().contains(query)) // check the title
+                list_searched.add(list_all.get(i));
+        }
+        return list_searched;
+    }
+
     // public boolean clear_Sort(String Table_name, int x) {
-    //     List<TaskObj>[] sorted_list = new List[2];
-    //     List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
-    //     List<Integer> id_array = new ArrayList<Integer>();
-    //     SQLiteDatabase db = this.getWritableDatabase();
-    //     if (x == 1) {// for Urgent
-    //         list = sorted_list[0];
-    //     }
-    //     if (x == 2) {// for normal
-    //         list = sorted_list[1];
-    //     }
-    //     int size = list.size();
-    //     for (int i = 0; i < size; i++) { // list of all the task ids to be deleted
-    //         id_array.add(list.get(i).getId());
-    //     }
-    //     String delete_Table = "DELETE FROM " + Table_name + " WHERE " + COLUMN_id + " IN " + id_array;
-    //     db.execSQL(delete_Table);
-    //     return true;
+    // List<TaskObj>[] sorted_list = new List[2];
+    // List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
+    // List<Integer> id_array = new ArrayList<Integer>();
+    // SQLiteDatabase db = this.getWritableDatabase();
+    // if (x == 1) {// for Urgent
+    // list = sorted_list[0];
+    // }
+    // if (x == 2) {// for normal
+    // list = sorted_list[1];
+    // }
+    // int size = list.size();
+    // for (int i = 0; i < size; i++) { // list of all the task ids to be deleted
+    // id_array.add(list.get(i).getId());
+    // }
+    // String delete_Table = "DELETE FROM " + Table_name + " WHERE " + COLUMN_id + "
+    // IN " + id_array;
+    // db.execSQL(delete_Table);
+    // return true;
     // }
 }

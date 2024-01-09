@@ -74,12 +74,12 @@ public class CreateTask extends AppCompatActivity {
                 if (Name.matches("")) {// if Title is empty
                     Toast.makeText(getApplicationContext(), name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
-                    // TODO: check if the current data is valid
                     // TODO: add it as an alarm and a notfication
                     // Added to DataBase
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note,time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
+                    // TODO: add it as an alarm and a notfication
                     Toast.makeText(getApplicationContext(), task_Added_Message + success, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();

@@ -1,6 +1,8 @@
 package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.AdapterView;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.content.Intent;
 import java.util.ArrayList;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
@@ -41,9 +44,13 @@ public class MainActivity extends AppCompatActivity {
         // on Screen
         Button btnpopup = (Button) findViewById(R.id.btnpopup);
         Button btnadd = (Button) findViewById(R.id.btnadd);
-        // Button btnAll = (Button) findViewById(R.id.btnalltask);
         Button btngosetting = (Button) findViewById(R.id.btnsettings);
         Button btnExit = (Button) findViewById(R.id.btnexit);
+        Button btnsearch = (Button) findViewById(R.id.btnsearch);
+        EditText search_box = ( EditText ) findViewById(R.id.search_filed);
+        search_box.setHintTextColor(Color.WHITE);
+        search_box.setHint("Search......");
+
         // add Task
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -124,12 +131,21 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         };
+        // search L
+        android.view.View.OnClickListener searchlistener = new View.OnClickListener() {
+            public void onClick(View v) {
+                Log.d("BUTTONS", "User tapped the Search button");
+                dbHelper = new DataBaseHelper(getApplicationContext());
+                showList(dbHelper.search(search_box.getText().toString()));
+            }
+        };
 
         // Set Listener
         btnadd.setOnClickListener(addlistener);
         btngosetting.setOnClickListener(settingslistener);
         btnExit.setOnClickListener(exitlistener);
         btnpopup.setOnClickListener(Menulistener);
+        btnsearch.setOnClickListener(searchlistener);
     }
 
     // function to update the list view

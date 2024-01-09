@@ -3,9 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+
 
     <application
         android:allowBackup="true"
@@ -37,13 +40,11 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".TaskBody"
-            android:exported="true">
-        </activity>
-        <activity
             android:name=".about"
             android:exported="true">
         </activity>
+
+        <receiver android:name=".AlarmReceiver" />
 
         
 

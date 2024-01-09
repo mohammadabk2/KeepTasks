@@ -10,39 +10,44 @@
 
     <Button
         android:id="@+id/btnexit"
-        android:layout_width="80dp"
-        android:layout_height="62dp"
-        android:layout_marginStart="324dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="7dp"
+        android:layout_width="84dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="664dp"
+        android:contentDescription="@string/empty_icon_only"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_delete"
+        app:iconSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/btnpopup"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/btnsettings"
-        android:layout_width="98dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginBottom="566dp"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="77dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/empty_icon_only"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@drawable/ic_settings_foreground"
         app:iconSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/search_filed"
+        app:layout_constraintEnd_toStartOf="@+id/btnpopup"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnexit"
+        app:layout_constraintVertical_bias="0.9" />
 
     <Button
         android:id="@+id/btnadd"
-        android:layout_width="99dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="293dp"
-        android:layout_marginTop="113dp"
-        android:layout_marginBottom="569dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="@string/empty_icon_only"
         android:gravity="center"
         android:scaleType="fitXY"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -50,41 +55,65 @@
         app:icon="@android:drawable/ic_input_add"
         app:iconSize="60dp"
         app:iconTint="#07F611"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnpopup"
+        app:layout_constraintTop_toBottomOf="@+id/btnexit" />
 
     <ListView
         android:id="@+id/lv"
-        android:layout_width="399dp"
-        android:layout_height="527dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="0dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="3dp"
         android:gravity="center"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@android:color/holo_orange_dark"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnpopup" />
+        app:layout_constraintTop_toBottomOf="@+id/search_filed" />
 
     <Button
         android:id="@+id/btnpopup"
-        android:layout_width="86dp"
+        android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="114dp"
-        android:layout_marginBottom="567dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/empty_icon_only"
         app:icon="@mipmap/ic_sort_foreground"
         app:iconSize="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/search_filed"
+        app:layout_constraintEnd_toStartOf="@+id/btnadd"
+        app:layout_constraintStart_toEndOf="@+id/btnsettings"
+        app:layout_constraintTop_toBottomOf="@+id/btnexit"
+        app:layout_constraintVertical_bias="0.925" />
+
+    <Button
+        android:id="@+id/btnsearch"
+        android:layout_width="96dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="5dp"
+        android:contentDescription="@string/empty_icon_only"
+        app:icon="@android:drawable/ic_menu_search"
+        app:iconSize="60dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/search_filed"
+        app:layout_constraintTop_toBottomOf="@+id/btnexit" />
+
+    <EditText
+        android:id="@+id/search_filed"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="24dp"
+        android:contentDescription="@string/empty_icon_only"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintEnd_toStartOf="@+id/btnsearch"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnexit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
