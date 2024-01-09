@@ -32,7 +32,7 @@ and i am working on adding the ability to delete from the database and edit exis
 1. ~~add the ability to complete tasks and delete them~~
 1. ~~add a task histroy in the database to be viewed in settings or a button for it~~
 1. ~~add clear history button~~
-1. add functionality to the normal and urgent buttons
+1. ~~add functionality to the normal and urgent buttons~~
 1. ~~add functionality to the clear history button~~
 1. ~~add the valid date ability~~
 1. change the filter buttons to be a list added by the user
@@ -40,6 +40,9 @@ and i am working on adding the ability to delete from the database and edit exis
 1. maybe sending a notification
 1. add the ability to edit tasks by having the createtask show again with all the details there
 1. add the ability to import/export the database
-1. polish gui in every page make everyhting fit better all around and have the same size
+1. ~~polish gui in every page make everyhting fit better all around and have the same size~~
 1. add a personal touch were it welcomes th person by name
 1. add search task
+1. ~~add a clock and upgrade the database~~
+1. add the ability to clear the database
+1. add a prompt to make sure before clearing main or histroy tables

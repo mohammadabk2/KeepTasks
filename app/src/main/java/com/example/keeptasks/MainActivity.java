@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper = new DataBaseHelper(getApplicationContext());
                 String table = "";
                 if (!on_history) {
-                    dbHelper.delete_Task(clickedTask);
+                    dbHelper.complete_Task(clickedTask);
                     table = DataBaseHelper.table_name;
                     Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
                 } else {

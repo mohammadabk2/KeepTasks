@@ -108,7 +108,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         for (int i = 0; i < size; i++) {
             if (list_all.get(i).getUrgent()) {
                 list_urgent.add(list_all.get(i));
-            }else{
+            } else {
                 list_normal.add(list_all.get(i));
             }
         }
@@ -117,7 +117,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return list_final;
     }
 
-    public boolean delete_Task(TaskObj task) {
+    public boolean complete_Task(TaskObj task) {
         // add the task to history along side status
         addOne(task, table_history_name);
         // if found in database it will be deleted
@@ -130,9 +130,29 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public boolean clear_DataBase(String Database_name) {
+    public boolean clear_Table(String Table_name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + Database_name);
+        db.execSQL("DELETE FROM " + Table_name);
         return true;
     }
+
+    // public boolean clear_Sort(String Table_name, int x) {
+    //     List<TaskObj>[] sorted_list = new List[2];
+    //     List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
+    //     List<Integer> id_array = new ArrayList<Integer>();
+    //     SQLiteDatabase db = this.getWritableDatabase();
+    //     if (x == 1) {// for Urgent
+    //         list = sorted_list[0];
+    //     }
+    //     if (x == 2) {// for normal
+    //         list = sorted_list[1];
+    //     }
+    //     int size = list.size();
+    //     for (int i = 0; i < size; i++) { // list of all the task ids to be deleted
+    //         id_array.add(list.get(i).getId());
+    //     }
+    //     String delete_Table = "DELETE FROM " + Table_name + " WHERE " + COLUMN_id + " IN " + id_array;
+    //     db.execSQL(delete_Table);
+    //     return true;
+    // }
 }
