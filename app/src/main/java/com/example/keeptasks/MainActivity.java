@@ -22,9 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // backend
     private static ArrayList<String> list;
-    private String task_complete = "Task Completed";
     ListView lv_task;
     DataBaseHelper dbHelper;
     ArrayAdapter taskAdapter;
@@ -47,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
         Button btngosetting = (Button) findViewById(R.id.btnsettings);
         Button btnExit = (Button) findViewById(R.id.btnexit);
         Button btnsearch = (Button) findViewById(R.id.btnsearch);
-        EditText search_box = ( EditText ) findViewById(R.id.search_filed);
+        EditText search_box = (EditText) findViewById(R.id.search_filed);
+        search_box.setHint(constants.search_hint);
         search_box.setHintTextColor(Color.WHITE);
-        search_box.setHint("Search......");
 
         // add Task
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!on_history) {
                     dbHelper.complete_Task(clickedTask);
                     table = DataBaseHelper.table_name;
-                    Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), constants.task_complete, Toast.LENGTH_SHORT).show();
                 } else {
                     table = DataBaseHelper.table_history_name;
                 }

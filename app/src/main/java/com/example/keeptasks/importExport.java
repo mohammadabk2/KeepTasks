@@ -2,7 +2,7 @@ package com.example.keeptasks;
 
 public class importExport {
     private static final int REQUEST_WRITE_PERMISSION = 786;
-    private String db_name = DataBaseHelper.DB_name;
+    private String db_name = constants.DB_name;
 
     public importExport(){
 

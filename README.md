@@ -42,7 +42,7 @@ and i am working on adding the ability to delete from the database and edit exis
 1. add the ability to import/export the database
 1. ~~polish gui in every page make everyhting fit better all around and have the same size~~
 1. add a personal touch were it welcomes th person by name
-1. add search task
+1. ~~add search task~~
 1. ~~add a clock and upgrade the database~~
 1. ~~add the ability to clear the database~~
 1. add a prompt to make sure before clearing main or histroy tables

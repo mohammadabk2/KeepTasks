@@ -13,8 +13,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    // DataBase name
-    public static final String DB_name = "TasksDataBase.db";
 
     // main table
     public static final String table_name = "Tasks";
@@ -30,7 +28,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_History_id = "Id";
 
     public DataBaseHelper(Context context) {
-        super(context, DB_name, null, 1);
+        super(context, constants.DB_name, null, 1);
     }
 
     @Override

@@ -18,11 +18,7 @@ import java.util.List;
 import android.content.Intent;
 
 public class Settings extends AppCompatActivity {
-
-    // back end
-    private static final int REQUEST_WRITE_PERMISSION = 786;
-    String clear_message = " Clear List ";
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +30,7 @@ public class Settings extends AppCompatActivity {
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
         Button btnclear = (Button) findViewById(R.id.btnclear);
-        btnclear.setText(clear_message);
+        btnclear.setText(constants.clear_message);
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);

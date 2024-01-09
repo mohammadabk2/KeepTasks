@@ -32,7 +32,7 @@ public class TaskBody extends AppCompatActivity {
         Button btnEdit = (Button) findViewById(R.id.btnexitsettings);
         Button btnclose = (Button) findViewById(R.id.btnclose);
         Button btndelete = (Button) findViewById(R.id.btndelete);
-        TextView vTitle = (TextView) findViewById(R.id.viewtitle);
+        TextView vTitle = (TextView) findViewById(R.id.version_info);
         TextView vurgent = (TextView) findViewById(R.id.viewurgent);
         TextView vDate = (TextView) findViewById(R.id.viewdate);
         TextView vNote = (TextView) findViewById(R.id.viewnote);

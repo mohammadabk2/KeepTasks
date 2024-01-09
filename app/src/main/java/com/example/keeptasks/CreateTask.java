@@ -21,6 +21,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.keeptasks.DataBaseHelper;
 import com.example.keeptasks.MainActivity;
 import com.example.keeptasks.TaskObj;
+import com.example.keeptasks.constants;
 
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
@@ -33,8 +34,6 @@ public class CreateTask extends AppCompatActivity {
     private Button btnDate, btnTime;
     private Date dateObj = new Date();
     private Time timeObj = new Time();
-    private final String task_Added_Message = "Task Added ";
-    private final String name_Empty_Message = "Name is empty";
     private Calendar cal = Calendar.getInstance();
 
     @Override
@@ -72,7 +71,7 @@ public class CreateTask extends AppCompatActivity {
                 Boolean urgent = urgentS.isChecked();// Get Urgent status
                 String time = btnTime.getText().toString();
                 if (Name.matches("")) {// if Title is empty
-                    Toast.makeText(getApplicationContext(), name_Empty_Message, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), constants.name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
                     // TODO: add it as an alarm and a notfication
                     // Added to DataBase
@@ -80,7 +79,7 @@ public class CreateTask extends AppCompatActivity {
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note,time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
                     // TODO: add it as an alarm and a notfication
-                    Toast.makeText(getApplicationContext(), task_Added_Message + success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), constants.task_Added_Message + success, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();
                 }
