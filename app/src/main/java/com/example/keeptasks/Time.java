@@ -1,7 +1,32 @@
 package com.example.keeptasks;
 
-public class Time {
-    public Time(int hour,int minute){
+import android.app.TimePickerDialog;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import android.widget.TimePicker;
 
+public class Time {
+    public Time() {
+
+    }
+
+    public String makeTimeString(int hour, int minutes) {
+        String time = "";
+        if (hour < 10) {
+            time += "0";
+        }
+        time += hour + ":";
+        if (minutes < 10) {
+            time += "0";
+        }
+        time += minutes;
+        return time;
+    }
+
+    public String getCurrentTime() {
+        Calendar cal = Calendar.getInstance();
+        int hour = cal.get(Calendar.HOUR);
+        int minutes = cal.get(Calendar.MINUTE);
+        return makeTimeString(hour, minutes);
     }
 }
