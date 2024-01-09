@@ -110,7 +110,7 @@ public class CreateTask extends AppCompatActivity {
         };
         Calendar cal = Calendar.getInstance();
         int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH) + 1; // it starts at zero
+        int month = cal.get(Calendar.MONTH); // it starts at zero
         int day = cal.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());

@@ -11,10 +11,9 @@
     <Button
         android:id="@+id/btncancel"
         android:layout_width="56dp"
-        android:layout_height="40dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="30dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_delete"
         app:layout_constraintBottom_toTopOf="@+id/txttitle"
@@ -25,31 +24,31 @@
         android:id="@+id/txttitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="59dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="Fill out the document"
+        android:text="Task Details"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/taskfiled"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btncancel"
+        app:layout_constraintStart_toStartOf="@+id/taskfiled"
         app:layout_constraintTop_toBottomOf="@+id/btncancel" />
 
     <Button
         android:id="@+id/dateinput"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:gravity="center"
         android:text="Date"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/switchremind"
+        app:layout_constraintBottom_toTopOf="@+id/timeinput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchurgent" />
@@ -58,9 +57,9 @@
         android:id="@+id/notefiled"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="7dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="81dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="23dp"
         android:ems="10"
         android:gravity="center"
         android:text=""
@@ -76,8 +75,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="11dp"
         android:layout_marginBottom="10dp"
         android:gravity="center"
         android:text="Remind you the day before"
@@ -86,20 +83,19 @@
         app:layout_constraintBottom_toTopOf="@+id/notefiled"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateinput" />
+        app:layout_constraintTop_toBottomOf="@+id/timeinput" />
 
     <Button
         android:id="@+id/btnalltask"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="35dp"
-        android:text="Finsih "
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="34dp"
+        android:text="Add Task"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notefiled" />
 
@@ -107,8 +103,8 @@
         android:id="@+id/taskfiled"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
         android:layout_marginBottom="9dp"
         android:ems="10"
         android:gravity="center"
@@ -125,9 +121,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
 
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="1dp"
+        android:layout_marginBottom="12dp"
         android:gravity="center"
         android:text="Urgent"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -136,6 +130,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskfiled" />
+
+    <Button
+        android:id="@+id/timeinput"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:text="Time"
+        app:layout_constraintBottom_toTopOf="@+id/switchremind"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateinput" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
