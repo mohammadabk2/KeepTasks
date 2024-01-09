@@ -24,6 +24,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_date = "Date";
     public static final String COLUMN_dayBefore = "DayBefore";
     public static final String COLUMN_note = "Note";
+    public static final String COLUMN_time = "Time";
     // history table
     public static final String table_history_name = "History";
     public static final String COLUMN_History_id = "Id";
@@ -40,14 +41,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 COLUMN_urgent + " TEXT," +
                 COLUMN_date + " TEXT, "
                 + COLUMN_dayBefore + " TEXT, "
-                + COLUMN_note + " TEXT )";
+                + COLUMN_note + " TEXT, "
+                + COLUMN_time + " TEXT )";
         String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
                 + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
                 COLUMN_title + " TEXT, " +
                 COLUMN_urgent + " TEXT," +
                 COLUMN_date + " TEXT, "
                 + COLUMN_dayBefore + " TEXT, "
-                + COLUMN_note + " TEXT )";
+                + COLUMN_note + " TEXT, "
+                + COLUMN_time + " TEXT )";
         db.execSQL(create_First_Table);
         db.execSQL(create_Second_Table);
     }
@@ -65,6 +68,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_date, task.getDate());
         cv.put(COLUMN_dayBefore, task.getBefore());
         cv.put(COLUMN_note, task.getNote());
+        cv.put(COLUMN_time, task.getTime());
 
         db.insert(table, null, cv);
         db.close();
@@ -85,7 +89,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 String date = cursor.getString(3);
                 boolean daybefore = cursor.getInt(4) == 1 ? true : false;
                 String note = cursor.getString(5);
-                TaskObj task = new TaskObj(id, title, date, urgent, daybefore, note);
+                String time = cursor.getString(6);
+                TaskObj task = new TaskObj(id, title, date, urgent, daybefore, note,time);
                 list.add(task);
             } while (cursor.moveToNext());
         }
@@ -107,9 +112,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public boolean clear_History() {
+    public boolean clear_DataBase(String Database_name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + table_history_name);
+        db.execSQL("DELETE FROM " + Database_name);
         return true;
     }
 

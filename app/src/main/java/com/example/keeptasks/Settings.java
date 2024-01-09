@@ -43,7 +43,7 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Clear History button");
                 DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                dbHelper.clear_History();
+                dbHelper.clear_DataBase(DataBaseHelper.table_history_name);
             }
         };
 

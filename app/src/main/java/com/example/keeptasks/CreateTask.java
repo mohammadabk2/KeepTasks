@@ -70,9 +70,7 @@ public class CreateTask extends AppCompatActivity {
                 String Date = btnDate.getText().toString();// Get the Date (Might change this to someother type late)
                 Boolean DateBefroe = dayBeforeS.isChecked();// Get Day Before status
                 Boolean urgent = urgentS.isChecked();// Get Urgent status
-
-                Boolean DateisRight = false;
-
+                String time = btnTime.getText().toString();
                 if (Name.matches("")) {// if Title is empty
                     Toast.makeText(getApplicationContext(), name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
@@ -80,7 +78,7 @@ public class CreateTask extends AppCompatActivity {
                     // TODO: add it as an alarm and a notfication
                     // Added to DataBase
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                    TaskObj task = new TaskObj(0, Name, Date, urgent, DateisRight, Note);
+                    TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note,time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
                     Toast.makeText(getApplicationContext(), task_Added_Message + success, Toast.LENGTH_SHORT).show();
                     startActivity(intent);
@@ -112,7 +110,6 @@ public class CreateTask extends AppCompatActivity {
                 timePickerDialog.show();
             }
         };
-
         // set Listener
         btndn.setOnClickListener(donelistener);
         btncln.setOnClickListener(cancellistener);
@@ -141,7 +138,6 @@ public class CreateTask extends AppCompatActivity {
                 btnTime.setText((timeObj.makeTimeString(hour, minutes)));
             }
         };
-
         int hour = this.cal.get(Calendar.HOUR);
         int minutes = this.cal.get(Calendar.MINUTE);
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);

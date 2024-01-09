@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lv_task;
     DataBaseHelper dbHelper;
     ArrayAdapter taskAdapter;
+    private boolean on_history = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +59,15 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
                 dbHelper = new DataBaseHelper(getApplicationContext());
-                dbHelper.delete_Task(clickedTask);
-                showEverything(dbHelper, DataBaseHelper.table_name);
-                Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
+                String table = "";
+                if (!on_history) {
+                    dbHelper.delete_Task(clickedTask);
+                    table = table = DataBaseHelper.table_name;
+                    Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
+                } else {
+                    table = table = DataBaseHelper.table_history_name;
+                }
+                showEverything(dbHelper, table); // change this to the right table being used
             }
         });
         // settings
@@ -92,8 +99,12 @@ public class MainActivity extends AppCompatActivity {
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the go to ALL button");
                             toShow = DataBaseHelper.table_name;
+                            btnpopup.setText("All");
+                            on_history = false;
                         } else if (item.getItemId() == R.id.item_history) {
                             toShow = DataBaseHelper.table_history_name;
+                            on_history = true;
+                            btnpopup.setText("Completed");
                         }
                         showEverything(dbHelper, toShow);
                         return true;
