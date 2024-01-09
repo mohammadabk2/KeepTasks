@@ -62,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 String table = "";
                 if (!on_history) {
                     dbHelper.delete_Task(clickedTask);
-                    table = table = DataBaseHelper.table_name;
+                    table = DataBaseHelper.table_name;
                     Toast.makeText(getApplicationContext(), task_complete, Toast.LENGTH_SHORT).show();
                 } else {
-                    table = table = DataBaseHelper.table_history_name;
+                    table = DataBaseHelper.table_history_name;
                 }
                 showEverything(dbHelper, table); // change this to the right table being used
             }
@@ -95,18 +95,29 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         dbHelper = new DataBaseHelper(getApplicationContext());
-                        String toShow = "";
+                        List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
                         if (item.getItemId() == R.id.item_all) {
-                            Log.d("BUTTONS", "User tapped the go to ALL button");
-                            toShow = DataBaseHelper.table_name;
+                            Log.d("BUTTONS", "User tapped the go to ALL item");
+                            list = dbHelper.getEverything(DataBaseHelper.table_name);
                             btnpopup.setText("All");
                             on_history = false;
                         } else if (item.getItemId() == R.id.item_history) {
-                            toShow = DataBaseHelper.table_history_name;
+                            Log.d("BUTTONS", "User tapped the go to history item");
+                            list = dbHelper.getEverything(DataBaseHelper.table_history_name);
                             on_history = true;
                             btnpopup.setText("Completed");
+                        } else if (item.getItemId() == R.id.item_urgent) {
+                            Log.d("BUTTONS", "User tapped the go to Urgent item");
+                            list = dbHelper.getSorted()[0];
+                            btnpopup.setText("Urgent");
+                            on_history = false;
+                        } else if (item.getItemId() == R.id.item_normal) {
+                            Log.d("BUTTONS", "User tapped the go to Normal item");
+                            list = dbHelper.getSorted()[1];
+                            btnpopup.setText("Normal");
+                            on_history = false;
                         }
-                        showEverything(dbHelper, toShow);
+                        showList(list);
                         return true;
                     }
                 });
@@ -125,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
     private void showEverything(DataBaseHelper dbH, String tableName) {
         this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
                 R.layout.lv_color_white, dbH.getEverything(tableName));
+        this.lv_task.setAdapter(taskAdapter);
+    }
+
+    private void showList(List<TaskObj> list) {
+        this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
+                R.layout.lv_color_white, list);
         this.lv_task.setAdapter(taskAdapter);
     }
 }

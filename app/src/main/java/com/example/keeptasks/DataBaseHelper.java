@@ -90,13 +90,31 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 boolean daybefore = cursor.getInt(4) == 1 ? true : false;
                 String note = cursor.getString(5);
                 String time = cursor.getString(6);
-                TaskObj task = new TaskObj(id, title, date, urgent, daybefore, note,time);
+                TaskObj task = new TaskObj(id, title, date, urgent, daybefore, note, time);
                 list.add(task);
             } while (cursor.moveToNext());
         }
         cursor.close();
         db.close();
         return list;
+    }
+
+    public List<TaskObj>[] getSorted() {
+        List<TaskObj>[] list_final = new List[2];
+        List<com.example.keeptasks.TaskObj> list_urgent = new ArrayList<>();
+        List<com.example.keeptasks.TaskObj> list_normal = new ArrayList<>();
+        List<com.example.keeptasks.TaskObj> list_all = getEverything(table_name);
+        int size = list_all.size();
+        for (int i = 0; i < size; i++) {
+            if (list_all.get(i).getUrgent()) {
+                list_urgent.add(list_all.get(i));
+            }else{
+                list_normal.add(list_all.get(i));
+            }
+        }
+        list_final[0] = list_urgent;
+        list_final[1] = list_normal;
+        return list_final;
     }
 
     public boolean delete_Task(TaskObj task) {
@@ -117,5 +135,4 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DELETE FROM " + Database_name);
         return true;
     }
-
 }
