@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
     
@@ -43,14 +44,6 @@ public class Settings extends AppCompatActivity {
                 startActivity(intent);
             }
         };
-        // android.view.View.OnClickListener clearlistener = new View.OnClickListener()
-        // {
-        // public void onClick(View v) {
-        // Log.d("BUTTONS", "User tapped the Clear History button");
-        // DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-        // dbHelper.clear_DataBase(DataBaseHelper.table_history_name);
-        // }
-        // };
 
         android.view.View.OnClickListener importlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -65,6 +58,12 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Expotr button");
                 // TODO:
+//                importExport.saveDB(getDatabasePath(constants.DB_name).toString());
+//                importExport.saveDB(getFilesDir().toString());
+                Toast.makeText(getApplicationContext(), "" + importExport.saveDB(getDatabasePath(constants.DB_name).toString()) , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"" + importExport.saveDB("text.txt"), Toast.LENGTH_SHORT).show();
+
+//                importExport.saveDB("text.txt");
             }
         };
         android.view.View.OnClickListener aboutlistener = new View.OnClickListener() {

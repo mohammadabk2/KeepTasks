@@ -19,6 +19,7 @@ public class about extends AppCompatActivity {
         version.setText(constants.version);
         TextView desc = (TextView) findViewById(R.id.version_info);
         desc.setText(constants.desc);
+        desc.setText(getDatabasePath(constants.DB_name).toString());
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 // TODO: create alarm and set in storage
