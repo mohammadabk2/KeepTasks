@@ -59,9 +59,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // Compelte Task
-        lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lv_task.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
                 dbHelper = new DataBaseHelper(getApplicationContext());
                 String table = "";
@@ -73,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
                     table = DataBaseHelper.table_history_name;
                 }
                 showEverything(dbHelper, table); // change this to the right table being used
+                return true;
+            }
+        });
+        // Edit task
+        lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), "task clicked this will let you edit tasks soon", Toast.LENGTH_SHORT).show();
+                // TODO:edit task here
+                // TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
+                // dbHelper = new DataBaseHelper(getApplicationContext());
+                // showEverything(dbHelper, table); // change this to the right table being used
             }
         });
         // settings
