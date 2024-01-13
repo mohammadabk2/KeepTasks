@@ -30,15 +30,8 @@ public class about extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: create alarm and set in storage
                 Log.d("BUTTONS", "User tapped the Exit button");
-                // testing notfiacations
-                NotificationBody noti = new NotificationBody();
-                NotificationManager notificationManager = (NotificationManager) getSystemService(
-                        Context.NOTIFICATION_SERVICE);
-                Notfication.makeNotification(about.this, about.this,"CHANNEL_ID_NOTIFICATION", "head", "body test 123456 hahaha no way this works", Color.GREEN,
-                        true,notificationManager);
-
-                // finish();
-                // startActivity(intentSettings);
+                finish();
+                startActivity(intentSettings);
             }
         };
         btnexit.setOnClickListener(exitlistener);
