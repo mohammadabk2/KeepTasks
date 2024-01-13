@@ -20,6 +20,6 @@ public class constants {
     public final static String search_hint = "Search......";
     public final static String clear_message = " Clear List ";
 
-    //importExport
+    // importExport
     public final static String dir = "Tasker Database Download";
 }

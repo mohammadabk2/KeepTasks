@@ -37,7 +37,7 @@ and i am working on adding the ability to delete from the database and edit exis
 1. ~~add the valid date ability~~
 1. change the filter buttons to be a list added by the user
 1. add setting alarms
-1. maybe sending a notification
+1. ~~maybe sending a notification~~
 1. add the ability to edit tasks by having the createtask show again with all the details there
 1. add the ability to import/export the database
 1. ~~polish gui in every page make everyhting fit better all around and have the same size~~
@@ -46,3 +46,4 @@ and i am working on adding the ability to delete from the database and edit exis
 1. ~~add a clock and upgrade the database~~
 1. ~~add the ability to clear the database~~
 1. add a prompt to make sure before clearing main or histroy tables
+1. integrate sending notifications

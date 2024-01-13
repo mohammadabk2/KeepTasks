@@ -19,7 +19,7 @@ import android.content.Intent;
 import android.widget.Toast;
 
 public class Settings extends AppCompatActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +58,14 @@ public class Settings extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Expotr button");
                 // TODO:
-//                importExport.saveDB(getDatabasePath(constants.DB_name).toString());
-//                importExport.saveDB(getFilesDir().toString());
-                Toast.makeText(getApplicationContext(), "" + importExport.saveDB(getDatabasePath(constants.DB_name).toString()) , Toast.LENGTH_SHORT).show();
-//                Toast.makeText(getApplicationContext(),"" + importExport.saveDB("text.txt"), Toast.LENGTH_SHORT).show();
-
-//                importExport.saveDB("text.txt");
+                // importExport.saveDB(getDatabasePath(constants.DB_name).toString());
+                // importExport.saveDB(getFilesDir().toString());
+//                Toast.makeText(getApplicationContext(),
+//                        "" + importExport.saveDB(getDatabasePath(constants.DB_name).toString()), Toast.LENGTH_SHORT)
+//                        .show();
+                 Toast.makeText(getApplicationContext(),"" + importExport.saveDB("text.txt"),
+                 Toast.LENGTH_SHORT).show();
+                // importExport.saveDB("text.txt");
             }
         };
         android.view.View.OnClickListener aboutlistener = new View.OnClickListener() {

@@ -10,23 +10,22 @@ import java.io.FileOutputStream;
 
 public class importExport {
 
+    public static boolean saveDB(String path) {
+//        File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+//                constants.dir);
+//        if (!dir.exists()) {
+//            dir.mkdirs();
+//        }
+        try {
+            File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), path);
+             return f.createNewFile();
+            // write to file
 
-   public static String saveDB(String path) {
-
-       try {
-//           File dir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) ,constants.dir);
-//           if(!dir.exists()) {
-//               dir.mkdirs();
-//           }
-           File f = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS) ,path);
-           f.createNewFile();
-           return "T";
-       } catch (Exception e) {
-           return  "F";
-       }
-//       return  false;
-   }
-
+        } catch (Exception e) {
+            return false;
+        }
+        // return false;
+    }
 
     // // TODO: grab the file after choosing it
     // private void fileChooser() {
