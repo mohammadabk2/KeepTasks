@@ -2,9 +2,12 @@ package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.AlertDialog;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,15 +19,6 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
-import android.database.sqlite.SQLiteDatabase;
-
-import com.example.keeptasks.DataBaseHelper;
-import com.example.keeptasks.MainActivity;
-import com.example.keeptasks.TaskObj;
-import com.example.keeptasks.constants;
-
-import java.io.IOException;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class CreateTask extends AppCompatActivity {
@@ -73,13 +67,37 @@ public class CreateTask extends AppCompatActivity {
                 if (Name.matches("")) {// if Title is empty
                     Toast.makeText(getApplicationContext(), constants.name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
-                    // TODO: add it as an alarm and a notfication
                     // Added to DataBase
                     DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                    TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note,time);
+                    TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note, time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
+
+                    // testing a notfication
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(
+                            Context.NOTIFICATION_SERVICE);
+                    Notfication.makeNotification(getApplicationContext(), CreateTask.this,Name + time, Name, Note, Color.BLACK,
+                            true,notificationManager,MainActivity.class);
                     // TODO: add it as an alarm and a notfication
-                    Toast.makeText(getApplicationContext(), constants.task_Added_Message + success, Toast.LENGTH_SHORT).show();
+//
+//                    // added to Alarm manager
+//                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+//                    Intent intent_alarm = new Intent(getApplicationContext(), AlarmReceiver.class); // return to Home Page
+//                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), task.getId() + 1,
+//                            intent_alarm, PendingIntent.FLAG_IMMUTABLE);
+//
+//
+////                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(), pendingIntent);
+//                    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+//
+//                    AlarmReceiver alarm = new AlarmReceiver();
+//                    NotificationManager notificationManager = (NotificationManager) getSystemService(
+//                            Context.NOTIFICATION_SERVICE);
+//                    alarm.setNotfiDetails(getApplicationContext(), CreateTask.this, notificationManager, "Head test",
+//                            "Body test", Color.BLACK);
+//                    // add a listener to cancel on the notfication it self
+
+                    Toast.makeText(getApplicationContext(), constants.task_Added_Message + success, Toast.LENGTH_SHORT)
+                            .show();
                     startActivity(intent);
                     finish();
                 }

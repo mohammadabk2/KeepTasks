@@ -6,6 +6,7 @@ import java.util.Calendar;
 import android.widget.TimePicker;
 
 public class Time {
+    long current_time;
     public Time() {
 
     }
@@ -27,6 +28,11 @@ public class Time {
         Calendar cal = Calendar.getInstance();
         int hour = cal.get(Calendar.HOUR);
         int minutes = cal.get(Calendar.MINUTE);
+        this.current_time=cal.getTimeInMillis();
         return makeTimeString(hour, minutes);
+    }
+
+    public long timeInMillis(){
+        return  this.current_time;
     }
 }

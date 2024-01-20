@@ -1,7 +1,7 @@
 package com.example.keeptasks;
 
 /*
- * To make a Notfication call the check checkPermission then makeNotfication
+ * To make a Notfication call makeNotfication
  * 
  *                 // testing notfiacations
                 NotificationManager notificationManager = (NotificationManager) getSystemService(
