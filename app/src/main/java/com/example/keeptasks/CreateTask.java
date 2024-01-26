@@ -14,6 +14,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
@@ -60,6 +61,14 @@ public class CreateTask extends AppCompatActivity {
         txtName.setHint("Task Title");
         txtNote.setHintTextColor(Color.WHITE);
         txtNote.setHint("Notes");
+        //
+        DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
+        TaskObj task = MainActivity.task_held;
+        if(task !=null){
+            loadTask(task);
+            dbHelper.complete_Task(task);
+            MainActivity.task_held=null;
+        }
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Done Button Listener
             @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
@@ -75,13 +84,11 @@ public class CreateTask extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), constants.name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
                     // Added to DataBase
-                    DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note, time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
 
                     // testing a notfication
                     boolean check = Permissions.notficationPermission(getApplicationContext(), CreateTask.this);
-                    Toast.makeText(getApplicationContext(), "" + check, Toast.LENGTH_SHORT).show();
                     if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
                         Toast.makeText(getApplicationContext(), "Notfications " + constants.permissionDenied,
                                 Toast.LENGTH_SHORT).show();
@@ -91,35 +98,6 @@ public class CreateTask extends AppCompatActivity {
                     Notfication.makeNotification(getApplicationContext(), CreateTask.this, Name + time, Name, Note,
                             Color.BLACK,
                             true, notificationManager, MainActivity.class);
-                    // TODO: add it as an alarm and a notfication
-                    //
-                    // // added to Alarm manager
-                    // AlarmManager alarmManager = (AlarmManager)
-                    // getSystemService(Context.ALARM_SERVICE);
-                    // Intent intent_alarm = new Intent(getApplicationContext(),
-                    // AlarmReceiver.class); // return to Home Page
-                    // PendingIntent pendingIntent =
-                    // PendingIntent.getBroadcast(getApplicationContext(), task.getId() + 1,
-                    // intent_alarm, PendingIntent.FLAG_IMMUTABLE);
-                    //
-                    //
-                    //// alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(),
-                    // pendingIntent);
-                    // alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                    // timeObj.timeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-                    //
-                    // AlarmReceiver alarm = new AlarmReceiver();
-                    // NotificationManager notificationManager = (NotificationManager)
-                    // getSystemService(
-                    // Context.NOTIFICATION_SERVICE);
-                    // alarm.setNotfiDetails(getApplicationContext(), CreateTask.this,
-                    // notificationManager, "Head test",
-                    // "Body test", Color.BLACK);
-                    // // add a listener to cancel on the notfication it self
-
-                    // Toast.makeText(getApplicationContext(), constants.task_Added_Message +
-                    // success, Toast.LENGTH_SHORT)
-                    // .show();
                     startActivity(intent);
                     finish();
                 }
@@ -182,12 +160,13 @@ public class CreateTask extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
     }
 
-    public void loadTask(TaskObj task){
+    public boolean loadTask(TaskObj task){
         this.txtName.setText(task.getTitle());
         this.urgentS.setChecked(task.getUrgent());
         this.btnDate.setText(task.getDate());
         this.btnTime.setText(task.getTime());
         this.dayBeforeS.setChecked(task.getBefore());
         this.txtNote.setText(task.getNote());
+        return true;
     }
 }

@@ -2,9 +2,11 @@ package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -24,10 +26,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static ArrayList<String> list;
-    ListView lv_task;
-    DataBaseHelper dbHelper;
-    ArrayAdapter taskAdapter;
+    private ListView lv_task;
+    private  DataBaseHelper dbHelper;
+    private ArrayAdapter taskAdapter;
     private boolean on_history = false;
+    public static TaskObj task_held;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,14 +86,11 @@ public class MainActivity extends AppCompatActivity {
         lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "task clicked this will let you edit tasks soon", Toast.LENGTH_SHORT).show();
-                // TODO:edit task here
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
                 dbHelper = new DataBaseHelper(getApplicationContext());
-
+                task_held = clickedTask;
                 finish();
                 startActivity(intentTask);
-                
             }
         });
         // settings

@@ -27,6 +27,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String table_history_name = "History";
     public static final String COLUMN_History_id = "Id";
 
+    private TaskObj task;
+
     public DataBaseHelper(Context context) {
         super(context, constants.DB_name, null, 1);
     }
