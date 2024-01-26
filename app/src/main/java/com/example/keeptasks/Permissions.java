@@ -2,10 +2,16 @@ package com.example.keeptasks;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Instrumentation;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Environment;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -15,7 +21,7 @@ public class Permissions {
             if (ContextCompat.checkSelfPermission(context,
                     android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(activity,
-                        new String[] { Manifest.permission.POST_NOTIFICATIONS },
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
                         101);
                 return false;
             }

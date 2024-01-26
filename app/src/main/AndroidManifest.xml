@@ -40,10 +40,10 @@
             android:name=".about"
             android:exported="true">
         </activity>
-        <activity
-            android:name=".NotificationBody"
+<!--        <activity-->
+<!--            android:name=".NotificationBody"-->
 
-            />
+<!--            />-->
 
         
 

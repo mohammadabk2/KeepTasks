@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Permissions
+        Permissions.notficationPermission(getApplicationContext(), MainActivity.this);
         // intents
         Intent intentTask = new Intent(getApplicationContext(), CreateTask.class); // go from main to form
         Intent intentSettings = new Intent(getApplicationContext(), Settings.class); // go from main to settings
@@ -82,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "task clicked this will let you edit tasks soon", Toast.LENGTH_SHORT).show();
                 // TODO:edit task here
-                // TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
-                // dbHelper = new DataBaseHelper(getApplicationContext());
-                // showEverything(dbHelper, table); // change this to the right table being used
+                TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
+                dbHelper = new DataBaseHelper(getApplicationContext());
+
+                finish();
+                startActivity(intentTask);
+                
             }
         });
         // settings

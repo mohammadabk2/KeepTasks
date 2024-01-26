@@ -10,6 +10,9 @@ public class constants {
 
     // CreateTask
     public final static String task_Added_Message = "Task Added ";
+    public final static String permissionDenied = "Permission Denied";
+
+
     public final static String name_Empty_Message = "Name is empty";
 
     // DataBaseHelper

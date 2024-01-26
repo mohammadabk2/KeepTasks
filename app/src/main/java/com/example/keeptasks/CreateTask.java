@@ -1,7 +1,10 @@
 package com.example.keeptasks;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -9,6 +12,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
@@ -25,10 +29,12 @@ public class CreateTask extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
-    private Button btnDate, btnTime;
     private Date dateObj = new Date();
     private Time timeObj = new Time();
     private Calendar cal = Calendar.getInstance();
+    private Button btnDate, btnTime;
+    private EditText txtName, txtNote;
+    Switch urgentS, dayBeforeS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +45,10 @@ public class CreateTask extends AppCompatActivity {
         // On Screen Objects
         Button btndn = (Button) findViewById(R.id.btnalltask); // The Done button
         Button btncln = (Button) findViewById(R.id.btncancel); // The Cancel button
-        EditText txtName = (EditText) findViewById(R.id.taskfiled);// The Title Field
-        Switch urgentS = (Switch) findViewById(R.id.switchurgent);// The Urgent Switch
-        EditText txtNote = (EditText) findViewById(R.id.notefiled);// The Note Field
-        Switch dayBeforeS = (Switch) findViewById(R.id.switchremind);// The Day Before Switch
+        txtName = (EditText) findViewById(R.id.taskfiled);// The Title Field
+        urgentS = (Switch) findViewById(R.id.switchurgent);// The Urgent Switch
+        txtNote = (EditText) findViewById(R.id.notefiled);// The Note Field
+        dayBeforeS = (Switch) findViewById(R.id.switchremind);// The Day Before Switch
         btnDate = (Button) findViewById(R.id.dateinput);// Date picker
         btnTime = (Button) findViewById(R.id.timeinput);// Time picker
         // set current day
@@ -56,6 +62,7 @@ public class CreateTask extends AppCompatActivity {
         txtNote.setHint("Notes");
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Done Button Listener
+            @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Finish button");
                 String Name = txtName.getText().toString();// Get the Title
@@ -73,31 +80,46 @@ public class CreateTask extends AppCompatActivity {
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
 
                     // testing a notfication
+                    boolean check = Permissions.notficationPermission(getApplicationContext(), CreateTask.this);
+                    Toast.makeText(getApplicationContext(), "" + check, Toast.LENGTH_SHORT).show();
+                    if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
+                        Toast.makeText(getApplicationContext(), "Notfications " + constants.permissionDenied,
+                                Toast.LENGTH_SHORT).show();
+                    }
                     NotificationManager notificationManager = (NotificationManager) getSystemService(
                             Context.NOTIFICATION_SERVICE);
-                    Notfication.makeNotification(getApplicationContext(), CreateTask.this,Name + time, Name, Note, Color.BLACK,
-                            true,notificationManager,MainActivity.class);
+                    Notfication.makeNotification(getApplicationContext(), CreateTask.this, Name + time, Name, Note,
+                            Color.BLACK,
+                            true, notificationManager, MainActivity.class);
                     // TODO: add it as an alarm and a notfication
-//
-//                    // added to Alarm manager
-//                    AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-//                    Intent intent_alarm = new Intent(getApplicationContext(), AlarmReceiver.class); // return to Home Page
-//                    PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), task.getId() + 1,
-//                            intent_alarm, PendingIntent.FLAG_IMMUTABLE);
-//
-//
-////                    alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(), pendingIntent);
-//                    alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-//
-//                    AlarmReceiver alarm = new AlarmReceiver();
-//                    NotificationManager notificationManager = (NotificationManager) getSystemService(
-//                            Context.NOTIFICATION_SERVICE);
-//                    alarm.setNotfiDetails(getApplicationContext(), CreateTask.this, notificationManager, "Head test",
-//                            "Body test", Color.BLACK);
-//                    // add a listener to cancel on the notfication it self
+                    //
+                    // // added to Alarm manager
+                    // AlarmManager alarmManager = (AlarmManager)
+                    // getSystemService(Context.ALARM_SERVICE);
+                    // Intent intent_alarm = new Intent(getApplicationContext(),
+                    // AlarmReceiver.class); // return to Home Page
+                    // PendingIntent pendingIntent =
+                    // PendingIntent.getBroadcast(getApplicationContext(), task.getId() + 1,
+                    // intent_alarm, PendingIntent.FLAG_IMMUTABLE);
+                    //
+                    //
+                    //// alarmManager.setExact(AlarmManager.RTC_WAKEUP, timeObj.timeInMillis(),
+                    // pendingIntent);
+                    // alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
+                    // timeObj.timeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                    //
+                    // AlarmReceiver alarm = new AlarmReceiver();
+                    // NotificationManager notificationManager = (NotificationManager)
+                    // getSystemService(
+                    // Context.NOTIFICATION_SERVICE);
+                    // alarm.setNotfiDetails(getApplicationContext(), CreateTask.this,
+                    // notificationManager, "Head test",
+                    // "Body test", Color.BLACK);
+                    // // add a listener to cancel on the notfication it self
 
-                    Toast.makeText(getApplicationContext(), constants.task_Added_Message + success, Toast.LENGTH_SHORT)
-                            .show();
+                    // Toast.makeText(getApplicationContext(), constants.task_Added_Message +
+                    // success, Toast.LENGTH_SHORT)
+                    // .show();
                     startActivity(intent);
                     finish();
                 }
@@ -158,5 +180,14 @@ public class CreateTask extends AppCompatActivity {
         int hour = this.cal.get(Calendar.HOUR);
         int minutes = this.cal.get(Calendar.MINUTE);
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
+    }
+
+    public void loadTask(TaskObj task){
+        this.txtName.setText(task.getTitle());
+        this.urgentS.setChecked(task.getUrgent());
+        this.btnDate.setText(task.getDate());
+        this.btnTime.setText(task.getTime());
+        this.dayBeforeS.setChecked(task.getBefore());
+        this.txtNote.setText(task.getNote());
     }
 }
