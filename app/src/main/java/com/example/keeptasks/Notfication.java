@@ -46,4 +46,8 @@ public class Notfication extends AppCompatActivity {
             notificationManager.notify(0, builder.build());
         }
     }
+
+    public static void setAlarm(){
+
+    }
 }

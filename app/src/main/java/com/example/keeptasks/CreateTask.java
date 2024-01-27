@@ -1,10 +1,9 @@
 package com.example.keeptasks;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.NotificationManager;
@@ -14,7 +13,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
@@ -36,6 +34,8 @@ public class CreateTask extends AppCompatActivity {
     private Button btnDate, btnTime;
     private EditText txtName, txtNote;
     private Switch urgentS, dayBeforeS;
+    private  AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,16 +88,19 @@ public class CreateTask extends AppCompatActivity {
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
 
                     // testing a notfication
-                    if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
-                        Toast.makeText(getApplicationContext(),
-                                "Notfications " + constants.permissionDenied + constants.allowPermission,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                    NotificationManager notificationManager = (NotificationManager) getSystemService(
-                            Context.NOTIFICATION_SERVICE);
-                    Notfication.makeNotification(getApplicationContext(), CreateTask.this, Name + time, Name, Note,
-                            Color.BLACK,
-                            true, notificationManager, MainActivity.class);
+//                    if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
+//                        Toast.makeText(getApplicationContext(),
+//                                "Notfications " + constants.permissionDenied + constants.allowPermission,
+//                                Toast.LENGTH_SHORT).show();
+//                    }
+//                    NotificationManager notificationManager = (NotificationManager) getSystemService(
+//                            Context.NOTIFICATION_SERVICE);
+//                    Notfication.makeNotification(getApplicationContext(), CreateTask.this, Name + time, Name, Note,
+//                            Color.BLACK,
+//                            true, notificationManager, MainActivity.class);
+                    // testing alarm
+                    setAlarm(cal.getTimeInMillis()); // change this to desired time to run the alarm
+
                     startActivity(intent);
                     finish();
                 }
@@ -160,13 +163,24 @@ public class CreateTask extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
     }
 
-    public boolean loadTask(TaskObj task) {
+    public void loadTask(TaskObj task) {
         this.txtName.setText(task.getTitle());
         this.urgentS.setChecked(task.getUrgent());
         this.btnDate.setText(task.getDate());
         this.btnTime.setText(task.getTime());
         this.dayBeforeS.setChecked(task.getBefore());
         this.txtNote.setText(task.getNote());
-        return true;
+    }
+
+    private  void setAlarm(long time){
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent testalarm = new Intent(this,AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this,0,testalarm, PendingIntent.FLAG_IMMUTABLE);
+//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);//change depending on importance
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
+//        Toast.makeText(getApplicationContext(), "In setAlarm",Toast.LENGTH_SHORT).show();
+//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        AlarmReceiver.notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        AlarmReceiver.activity = CreateTask.this;
     }
 }

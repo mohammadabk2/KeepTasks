@@ -40,6 +40,8 @@
             android:name=".about"
             android:exported="true">
         </activity>
+        <receiver android:name=".AlarmReceiver"/>
+        
 <!--        <activity-->
 <!--            android:name=".NotificationBody"-->
 
