@@ -6,12 +6,12 @@ import android.os.Environment;
 public class constants {
     // about
     public final static String desc = "App to help people keep track of their tasks and manage time";
-    public final static String version = "0.9";
+    public final static String version = "0.91";
 
     // CreateTask
-    public final static String task_Added_Message = "Task Added ";
+    public final static String task_Added_Message = "Task Added";
     public final static String permissionDenied = "Permission Denied";
-
+    public final static String allowPermission = "Please allow";
 
     public final static String name_Empty_Message = "Name is empty";
 

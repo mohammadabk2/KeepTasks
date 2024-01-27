@@ -47,3 +47,4 @@ and i am working on adding the ability to delete from the database and edit exis
 1. ~~add the ability to clear the database~~
 1. add a prompt to make sure before clearing main or histroy tables
 1. integrate sending notifications
+1. when canceling an edit make sure it doenst delete the task

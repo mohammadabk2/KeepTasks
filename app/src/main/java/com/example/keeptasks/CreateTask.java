@@ -35,7 +35,7 @@ public class CreateTask extends AppCompatActivity {
     private Calendar cal = Calendar.getInstance();
     private Button btnDate, btnTime;
     private EditText txtName, txtNote;
-    Switch urgentS, dayBeforeS;
+    private Switch urgentS, dayBeforeS;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +64,10 @@ public class CreateTask extends AppCompatActivity {
         //
         DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
         TaskObj task = MainActivity.task_held;
-        if(task !=null){
+        if (task != null) {
             loadTask(task);
             dbHelper.complete_Task(task);
-            MainActivity.task_held=null;
+            MainActivity.task_held = null;
         }
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Done Button Listener
@@ -77,9 +77,9 @@ public class CreateTask extends AppCompatActivity {
                 String Name = txtName.getText().toString();// Get the Title
                 String Note = txtNote.getText().toString();// Get the Note
                 String Date = btnDate.getText().toString();// Get the Date (Might change this to someother type late)
+                String time = btnTime.getText().toString();// Get Time
                 Boolean DateBefroe = dayBeforeS.isChecked();// Get Day Before status
                 Boolean urgent = urgentS.isChecked();// Get Urgent status
-                String time = btnTime.getText().toString();
                 if (Name.matches("")) {// if Title is empty
                     Toast.makeText(getApplicationContext(), constants.name_Empty_Message, Toast.LENGTH_SHORT).show();
                 } else {
@@ -88,9 +88,9 @@ public class CreateTask extends AppCompatActivity {
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
 
                     // testing a notfication
-                    boolean check = Permissions.notficationPermission(getApplicationContext(), CreateTask.this);
                     if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
-                        Toast.makeText(getApplicationContext(), "Notfications " + constants.permissionDenied,
+                        Toast.makeText(getApplicationContext(),
+                                "Notfications " + constants.permissionDenied + constants.allowPermission,
                                 Toast.LENGTH_SHORT).show();
                     }
                     NotificationManager notificationManager = (NotificationManager) getSystemService(
@@ -134,7 +134,7 @@ public class CreateTask extends AppCompatActivity {
         btnTime.setOnClickListener(timelistener);
     }
 
-    private void initDatePicker() {
+    private void initDatePicker() { // should add to Time class
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -148,7 +148,7 @@ public class CreateTask extends AppCompatActivity {
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
     }
 
-    private void initTimePicker() {
+    private void initTimePicker() { // should add to Time class
         TimePickerDialog.OnTimeSetListener timePickerlistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour, int minutes) {
@@ -160,7 +160,7 @@ public class CreateTask extends AppCompatActivity {
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
     }
 
-    public boolean loadTask(TaskObj task){
+    public boolean loadTask(TaskObj task) {
         this.txtName.setText(task.getTitle());
         this.urgentS.setChecked(task.getUrgent());
         this.btnDate.setText(task.getDate());

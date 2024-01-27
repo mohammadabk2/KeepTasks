@@ -1,14 +1,10 @@
 package com.example.keeptasks;
 
-/*
- * To make a Notfication call makeNotfication
- * 
- *                 // testing notfiacations
-                NotificationManager notificationManager = (NotificationManager) getSystemService(
+/*To make a Notfication call Permission then call makeNotfication
+*             NotificationManager notificationManager = (NotificationManager) getSystemService(
                         Context.NOTIFICATION_SERVICE);
                 Notfication.makeNotification(about.this, about.this,"CHANNEL_ID_NOTIFICATION", "head", "body test 123456 hahaha no way this works", Color.GREEN,
                         true,notificationManager,MainActivity.class);
-
  */
 import android.app.Activity;
 import android.app.NotificationChannel;
@@ -22,7 +18,7 @@ import androidx.core.app.NotificationCompat;
 public class Notfication extends AppCompatActivity {
 
     public static void makeNotification(Context context, Activity activity, String chanel_id, String title, String body,
-            int color, boolean vibrate, NotificationManager notificationManager,Class toGO) {
+            int color, boolean vibrate, NotificationManager notificationManager, Class toGO) {
 
         if (Permissions.notficationPermission(context, activity)) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, chanel_id);

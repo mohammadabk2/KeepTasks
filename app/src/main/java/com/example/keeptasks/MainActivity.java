@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static ArrayList<String> list;
     private ListView lv_task;
-    private  DataBaseHelper dbHelper;
+    private DataBaseHelper dbHelper;
     private ArrayAdapter taskAdapter;
     private boolean on_history = false;
     public static TaskObj task_held;
@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 popupMenu.show();
             }
         };
-        // search L
+        // search Listener
         android.view.View.OnClickListener searchlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Search button");
