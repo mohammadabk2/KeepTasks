@@ -19,6 +19,13 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     public static NotificationManager notificationManager;
     public static Activity activity;
+    private  static  String channel , head,body;
+
+    public static void setDetailsAlarm(String chan,String he,String bod){
+        channel = chan;
+        head = he;
+        body = bod;
+    }
 
     // public void setNotfiDetails(Context context, Activity activity,
     // NotificationManager notificationManager, String head,
@@ -43,7 +50,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                     "Notfications " + constants.permissionDenied + constants.allowPermission,
                     Toast.LENGTH_SHORT).show();
         }
-        Notfication.makeNotification(context, activity, "title test", "test name", "random note this was created by an alarm ",
+        Notfication.makeNotification(context, activity, channel, head, body,
                 Color.BLACK,
                 true, notificationManager, MainActivity.class);
 

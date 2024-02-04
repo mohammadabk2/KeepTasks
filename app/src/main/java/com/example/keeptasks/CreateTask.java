@@ -36,6 +36,7 @@ public class CreateTask extends AppCompatActivity {
     private Switch urgentS, dayBeforeS;
     private  AlarmManager alarmManager;
     private PendingIntent pendingIntent;
+    private int year,month,day,hour,minutes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,19 +88,9 @@ public class CreateTask extends AppCompatActivity {
                     TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note, time);
                     boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
 
-                    // testing a notfication
-//                    if (!Permissions.notficationPermission(getApplicationContext(), CreateTask.this)) {
-//                        Toast.makeText(getApplicationContext(),
-//                                "Notfications " + constants.permissionDenied + constants.allowPermission,
-//                                Toast.LENGTH_SHORT).show();
-//                    }
-//                    NotificationManager notificationManager = (NotificationManager) getSystemService(
-//                            Context.NOTIFICATION_SERVICE);
-//                    Notfication.makeNotification(getApplicationContext(), CreateTask.this, Name + time, Name, Note,
-//                            Color.BLACK,
-//                            true, notificationManager, MainActivity.class);
                     // testing alarm
-                    setAlarm(cal.getTimeInMillis()); // change this to desired time to run the alarm
+                    AlarmReceiver.setDetailsAlarm("channel 1",Name,Note);
+                    setAlarm(Time.futureTime(year,month,day,hour,minutes)); // change this to desired time to run the alarm
 
                     startActivity(intent);
                     finish();
@@ -144,9 +135,9 @@ public class CreateTask extends AppCompatActivity {
                 btnDate.setText(dateObj.makeDateString(day, month + 1, year));
             }
         };
-        int year = this.cal.get(Calendar.YEAR);
-        int month = this.cal.get(Calendar.MONTH); // it starts at zero
-        int day = this.cal.get(Calendar.DAY_OF_MONTH);
+        year = this.cal.get(Calendar.YEAR);
+        month = this.cal.get(Calendar.MONTH); // it starts at zero
+        day = this.cal.get(Calendar.DAY_OF_MONTH);
         datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
         datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
     }
@@ -158,8 +149,8 @@ public class CreateTask extends AppCompatActivity {
                 btnTime.setText((timeObj.makeTimeString(hour, minutes)));
             }
         };
-        int hour = this.cal.get(Calendar.HOUR);
-        int minutes = this.cal.get(Calendar.MINUTE);
+         hour = this.cal.get(Calendar.HOUR);
+         minutes = this.cal.get(Calendar.MINUTE);
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
     }
 
