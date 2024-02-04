@@ -36,7 +36,7 @@ public class Time {
         return  this.current_time;
     }
 
-    public static long futureTime(int year,int month,int day,int hour,int min){
+    public long futureTime(int year,int month,int day,int hour,int min){
         Calendar cal = Calendar.getInstance();
         cal.set(year,month,day,hour,min);
         return cal.getTimeInMillis();

@@ -37,6 +37,7 @@ public class CreateTask extends AppCompatActivity {
     private  AlarmManager alarmManager;
     private PendingIntent pendingIntent;
     private int year,month,day,hour,minutes;
+    private long alarm_repeate = 300000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class CreateTask extends AppCompatActivity {
 
                     // testing alarm
                     AlarmReceiver.setDetailsAlarm("channel 1",Name,Note);
-                    setAlarm(Time.futureTime(year,month,day,hour,minutes)); // change this to desired time to run the alarm
+                    setAlarm(timeObj.futureTime(year,month,day,hour,minutes)); // change this to desired time to run the alarm
 
                     startActivity(intent);
                     finish();
@@ -168,9 +169,7 @@ public class CreateTask extends AppCompatActivity {
         Intent testalarm = new Intent(this,AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this,0,testalarm, PendingIntent.FLAG_IMMUTABLE);
 //        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);//change depending on importance
-        alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
-//        Toast.makeText(getApplicationContext(), "In setAlarm",Toast.LENGTH_SHORT).show();
-//        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,time,alarm_repeate,pendingIntent);
         AlarmReceiver.notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         AlarmReceiver.activity = CreateTask.this;
     }
