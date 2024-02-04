@@ -92,7 +92,11 @@ public class CreateTask extends AppCompatActivity {
 
                     // testing alarm
                     AlarmReceiver.setDetailsAlarm("channel 1",Name,Note);
-                    setAlarm(timeObj.futureTime(year,month,day,hour,minutes)); // change this to desired time to run the alarm
+                    Toast.makeText(getApplicationContext(), "current time" + timeObj.timeInMillis() + "future time" + timeObj.futureTime(dateObj), Toast.LENGTH_SHORT).show();
+
+//                    Toast.makeText(getApplicationContext(), "Testing pickers"+dateObj.getYear()+"/"+dateObj.getMonth() +"/"+dateObj.getDay() + " "+timeObj.getHour() +":"+timeObj.getMin()+"", Toast.LENGTH_SHORT).show();
+                    setAlarm(timeObj.futureTime(dateObj)); // change this to desired time to run the alarm
+                    //
 
                     startActivity(intent);
                     finish();
@@ -134,10 +138,8 @@ public class CreateTask extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year_here, int month_here, int day_here) {
-                year = year_here;
-                month = month_here;
-                day = day_here;
-                btnDate.setText(dateObj.makeDateString(day, month + 1, year));
+                dateObj.setFutureDate(year_here,month_here,day_here);
+                btnDate.setText(dateObj.makeDateString(dateObj.getDay(), dateObj.getMonth() + 1, dateObj.getYear()));
             }
         };
         year = this.cal.get(Calendar.YEAR);
@@ -151,9 +153,8 @@ public class CreateTask extends AppCompatActivity {
         TimePickerDialog.OnTimeSetListener timePickerlistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour_here, int minutes_here) {
-                hour = hour_here;
-                minutes = minutes_here;
-                btnTime.setText((timeObj.makeTimeString(hour, minutes)));
+                timeObj.setFutureTime(hour_here,minutes_here);
+                btnTime.setText((timeObj.makeTimeString(timeObj.getHour(), timeObj.getMin())));
             }
         };
          hour = this.cal.get(Calendar.HOUR);
@@ -180,6 +181,5 @@ public class CreateTask extends AppCompatActivity {
         alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
         AlarmReceiver.notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         AlarmReceiver.activity = CreateTask.this;
-        Toast.makeText(getApplicationContext(), "Testing pickers"+year+"/"+month +"/"+day + " "+hour +":"+minutes+"", Toast.LENGTH_SHORT).show();
     }
 }

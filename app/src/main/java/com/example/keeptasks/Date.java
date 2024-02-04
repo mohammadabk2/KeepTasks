@@ -7,11 +7,28 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class Date {
-    // TODO: check if the current date is valid
+    private int year_f,month_f,day_f;
 
     public Date() {
     }
 
+    public void setFutureDate(int year , int month, int day){
+        this.year_f = year;
+        this.month_f = month;
+        this.day_f = day;
+    }
+
+    public int getYear(){
+        return  this.year_f;
+    }
+
+    public int getMonth(){
+        return  this.month_f;
+    }
+
+    public int getDay(){
+        return  this.day_f;
+    }
     public String makeDateString(int day, int month, int year) {
         return day + "/" + month + "/" + year;
     }

@@ -7,6 +7,7 @@ import android.widget.TimePicker;
 
 public class Time {
     long current_time;
+    private  int hour,min;
     public Time() {
 
     }
@@ -37,9 +38,22 @@ public class Time {
         return  this.current_time;
     }
 
-    public long futureTime(int year,int month,int day,int hour,int min){
+    public long futureTime(Date dateObj){
         Calendar cal = Calendar.getInstance();
-        cal.set(year,month,day,hour,min);
+        cal.set(dateObj.getYear(),dateObj.getMonth(),dateObj.getDay(),this.hour,this.min);
         return cal.getTimeInMillis();
+    }
+
+    public int getHour(){
+        return  this.hour;
+    }
+
+    public int getMin(){
+        return this.min;
+    }
+
+    public void setFutureTime(int hour,int min){
+        this.hour = hour;
+        this.min = min;
     }
 }
