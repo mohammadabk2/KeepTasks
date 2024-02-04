@@ -38,6 +38,7 @@ public class CreateTask extends AppCompatActivity {
     private PendingIntent pendingIntent;
     private int year,month,day,hour,minutes;
     private long alarm_repeate = 300000;
+    private TaskObj task;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class CreateTask extends AppCompatActivity {
         txtNote.setHint("Notes");
         //
         DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-        TaskObj task = MainActivity.task_held;
+        task = MainActivity.task_held;
         if (task != null) {
             loadTask(task);
             dbHelper.complete_Task(task);
@@ -132,7 +133,10 @@ public class CreateTask extends AppCompatActivity {
     private void initDatePicker() { // should add to Time class
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
+            public void onDateSet(DatePicker view, int year_here, int month_here, int day_here) {
+                year = year_here;
+                month = month_here;
+                day = day_here;
                 btnDate.setText(dateObj.makeDateString(day, month + 1, year));
             }
         };
@@ -146,13 +150,17 @@ public class CreateTask extends AppCompatActivity {
     private void initTimePicker() { // should add to Time class
         TimePickerDialog.OnTimeSetListener timePickerlistener = new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onTimeSet(TimePicker view, int hour, int minutes) {
+            public void onTimeSet(TimePicker view, int hour_here, int minutes_here) {
+                hour = hour_here;
+                minutes = minutes_here;
                 btnTime.setText((timeObj.makeTimeString(hour, minutes)));
             }
         };
          hour = this.cal.get(Calendar.HOUR);
          minutes = this.cal.get(Calendar.MINUTE);
         timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
+        hour = this.cal.get(Calendar.HOUR);
+        minutes = this.cal.get(Calendar.MINUTE);
     }
 
     public void loadTask(TaskObj task) {
@@ -167,10 +175,11 @@ public class CreateTask extends AppCompatActivity {
     private  void setAlarm(long time){
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent testalarm = new Intent(this,AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,testalarm, PendingIntent.FLAG_IMMUTABLE);
+        pendingIntent = PendingIntent.getBroadcast(this,0,testalarm, PendingIntent.FLAG_IMMUTABLE);//change reques code to something uniqe
 //        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);//change depending on importance
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,time,alarm_repeate,pendingIntent);
+        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
         AlarmReceiver.notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         AlarmReceiver.activity = CreateTask.this;
+        Toast.makeText(getApplicationContext(), "Testing pickers"+year+"/"+month +"/"+day + " "+hour +":"+minutes+"", Toast.LENGTH_SHORT).show();
     }
 }

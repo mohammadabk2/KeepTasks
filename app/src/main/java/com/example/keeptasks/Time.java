@@ -33,6 +33,7 @@ public class Time {
     }
 
     public long timeInMillis(){
+
         return  this.current_time;
     }
 
