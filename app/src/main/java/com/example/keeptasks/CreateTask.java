@@ -92,7 +92,7 @@ public class CreateTask extends AppCompatActivity {
 
                     // testing alarm
                     AlarmReceiver.setDetailsAlarm("channel 1",Name,Note);
-                    Toast.makeText(getApplicationContext(), "current time" + timeObj.timeInMillis() + "future time" + timeObj.futureTime(dateObj), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "current time" + timeObj.timeInMillis() + "future time" + timeObj.futureTime(dateObj), Toast.LENGTH_SHORT).show();
 
 //                    Toast.makeText(getApplicationContext(), "Testing pickers"+dateObj.getYear()+"/"+dateObj.getMonth() +"/"+dateObj.getDay() + " "+timeObj.getHour() +":"+timeObj.getMin()+"", Toast.LENGTH_SHORT).show();
                     setAlarm(timeObj.futureTime(dateObj)); // change this to desired time to run the alarm

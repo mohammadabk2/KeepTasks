@@ -47,7 +47,10 @@
 <!--            android:name=".NotificationBody"-->
 
 <!--            />-->
-
+        <activity
+            android:name=".Usage"
+            android:exported="true">
+        </activity>
         
 
     </application>

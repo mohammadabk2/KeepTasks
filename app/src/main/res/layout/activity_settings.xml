@@ -62,15 +62,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="207dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="133dp"
         android:gravity="center"
         android:text="Import"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnexport"
+        app:layout_constraintBottom_toTopOf="@+id/btnusage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnclear" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnexport"
@@ -105,6 +107,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnexport" />
+
+    <Button
+        android:id="@+id/btnusage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="274dp"
+        android:text="Usage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnimport" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

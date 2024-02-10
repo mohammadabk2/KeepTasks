@@ -27,6 +27,7 @@ public class Settings extends AppCompatActivity {
         // move between pages
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         Intent intentabout = new Intent(getApplicationContext(), about.class);
+        Intent intentusage = new Intent(getApplicationContext(),Usage.class);
 
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
@@ -35,6 +36,7 @@ public class Settings extends AppCompatActivity {
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);
+        Button btnUsage = (Button) findViewById(R.id.btnusage);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -77,6 +79,16 @@ public class Settings extends AppCompatActivity {
             }
         };
 
+        android.view.View.OnClickListener usageListener = new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO: create alarm and set in storage
+                Log.d("BUTTONS", "User tapped the Usage button");
+                finish();
+                startActivity(intentusage);
+            }
+        };
+
+
         android.view.View.OnClickListener Menulistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Menu button");
@@ -105,5 +117,6 @@ public class Settings extends AppCompatActivity {
         btnimport.setOnClickListener(importlistener);
         btnexport.setOnClickListener(exportlistener);
         btnabout.setOnClickListener(aboutlistener);
+        btnUsage.setOnClickListener(usageListener);
     }
 }

@@ -25,4 +25,7 @@ public class constants {
 
     // importExport
     public final static String dir = "Tasker Database Download";
+    public final static String usage1 = "Hold to complete a task";
+    public final static String usage2 = "double tap to edit an existing task";
+
 }

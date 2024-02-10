@@ -2,11 +2,10 @@ package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Environment;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -19,8 +18,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.view.GestureDetector;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentTask);
             }
         };
-        // Compelte Task
+        // Complete Task
         lv_task.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -82,9 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        // Edit task
+        // single and double click
         lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
+            @Override //  Edit task
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
                 dbHelper = new DataBaseHelper(getApplicationContext());
