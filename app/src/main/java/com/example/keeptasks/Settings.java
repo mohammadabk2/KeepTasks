@@ -28,6 +28,7 @@ public class Settings extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         Intent intentabout = new Intent(getApplicationContext(), about.class);
         Intent intentusage = new Intent(getApplicationContext(),Usage.class);
+        Intent intentlist = new Intent(getApplicationContext(),List.class);
 
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
@@ -37,6 +38,7 @@ public class Settings extends AppCompatActivity {
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);
         Button btnUsage = (Button) findViewById(R.id.btnusage);
+        Button btnlist = (Button) findViewById(R.id.btnaddlist);
         // Listeners
         android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
             public void onClick(View v) {
@@ -87,6 +89,15 @@ public class Settings extends AppCompatActivity {
                 startActivity(intentusage);
             }
         };
+        android.view.View.OnClickListener addlistlistener = new View.OnClickListener() {
+            public void onClick(View v) {
+                // TODO: create alarm and set in storage
+                Log.d("BUTTONS", "User tapped the Add list button");
+                finish();
+                startActivity(intentlist);
+            }
+        };
+
 
 
         android.view.View.OnClickListener Menulistener = new View.OnClickListener() {
@@ -118,5 +129,6 @@ public class Settings extends AppCompatActivity {
         btnexport.setOnClickListener(exportlistener);
         btnabout.setOnClickListener(aboutlistener);
         btnUsage.setOnClickListener(usageListener);
+        btnlist.setOnClickListener(addlistlistener);
     }
 }
