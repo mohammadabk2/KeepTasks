@@ -18,21 +18,21 @@ public class lists extends AppCompatActivity {
     // private ArrayList<String> listOfLists;
 
     // public lists() {
-    //     listOfLists = new ArrayList<String>();
-    //     listOfLists.add(constants.listAll);
-    //     listOfLists.add(constants.listHistory);
+    // listOfLists = new ArrayList<String>();
+    // listOfLists.add(constants.listAll);
+    // listOfLists.add(constants.listHistory);
     // }
 
     // public ArrayList<String> getListOfLists() {
-    //     return this.listOfLists;
+    // return this.listOfLists;
     // }
 
     // public void addToList(String listName) {
-    //     this.listOfLists.add(listName);
+    // this.listOfLists.add(listName);
     // }
 
     // public void removeFromList(String listName) {
-    //     this.listOfLists.remove(listName);
+    // this.listOfLists.remove(listName);
     // }
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,6 @@ public class lists extends AppCompatActivity {
         Button btnRemoveList = (Button) findViewById(R.id.btnremovelist);
         EditText listName = (EditText) findViewById(R.id.listtoadd);
         listName.setHintTextColor(Color.WHITE);
-        listName.setHint("List to add");
         DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
 
         android.view.View.OnClickListener exitListener = new View.OnClickListener() {
@@ -62,7 +61,7 @@ public class lists extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the add list button");
                 dbHelper.addToList(listName.getText().toString());
-                listName.setText("List to add");
+                listName.setText("");
             }
         };
         android.view.View.OnClickListener MenuListener = new View.OnClickListener() {
@@ -90,25 +89,28 @@ public class lists extends AppCompatActivity {
         android.view.View.OnClickListener removeListListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Remove list button");
+                // create all the menu items
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
                 popupMenu.getMenuInflater().inflate(R.menu.listmenue, popupMenu.getMenu());
+                ArrayList list = dbHelper.getList();
+                for (int i = 0; i < list.size(); i++) {// adds the lists to the menu
+                    popupMenu.getMenu().add(list.get(i).toString());
+                }
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    // create all the menue items
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        // if(item.getItemId() == R.id.)
-//                         if (item.getItemId() == R.id.item_all) {
-//                             Log.d("BUTTONS", "User tapped the Clear All button");
-//                             dbHelper.clearTable(DataBaseHelper.tableName);
-//                         } else if (item.getItemId() == R.id.item_history) {
-//                             Log.d("BUTTONS", "User tapped the Clear History button");
-//                             dbHelper.clearTable(DataBaseHelper.tableHistoryName);
-//                         }
-                         return true;
+                        for (int i = 0; i < list.size(); i++) {
+                            if (item.getTitle().equals(list.get(i).toString())) {
+                                dbHelper.removeFromList(item.getTitle().toString());
+                                popupMenu.getMenu().removeItem(i);
+                                list.remove(i);
+                                break;
+                            }
+                        }
+                        return true;
                     }
                 });
                 popupMenu.show();
-
             }
         };
         btnExit.setOnClickListener(exitListener);

@@ -156,7 +156,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addToList(String listToAdd) {
-        // TODO: make sure list doenst already exist
+        ArrayList list = getList();
+        for(int i =0;i<list.size();i++){
+            if(listToAdd.equals(list.get(i).toString())){
+                return false;
+            }
+        }
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
         cv.put(COLUMNLISTS, listToAdd);
@@ -180,9 +185,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return listOfLists;
     }
 
-    public boolean removeFromList(int index) {
+    public boolean removeFromList(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-        String delete_Task = "DELETE FROM " + TableListName + " WHERE " + COLUMNLISTID + " = " + index;
+        String delete_Task = "DELETE FROM " + TableListName + " WHERE " + COLUMNLISTS + " = " + name;
         Cursor cursor = db.rawQuery(delete_Task, null);
         if (cursor.moveToFirst()) {
             return true;
