@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private DataBaseHelper dbHelper;
     private ArrayAdapter taskAdapter;
     private boolean on_history = false;
-    public static TaskObj task_held;
+    private static TaskObj taskHeld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // backend start
         dbHelper = new DataBaseHelper(getApplicationContext());
         lv_task = (ListView) findViewById(R.id.lv);
-        showEverything(dbHelper, DataBaseHelper.table_name);
+        showEverything(dbHelper, DataBaseHelper.tableName);
         // on Screen
         Button btnpopup = (Button) findViewById(R.id.btnpopup);
         Button btnadd = (Button) findViewById(R.id.btnadd);
@@ -50,14 +50,14 @@ public class MainActivity extends AppCompatActivity {
         Button btnExit = (Button) findViewById(R.id.btnexit);
         Button btnsearch = (Button) findViewById(R.id.btnsearch);
         EditText search_box = (EditText) findViewById(R.id.search_filed);
-        search_box.setHint(constants.search_hint);
+        search_box.setHint(constants.searchHint);
         search_box.setHintTextColor(Color.WHITE);
 
         // add Task
         android.view.View.OnClickListener addlistener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the add button");
-                showEverything(dbHelper, DataBaseHelper.table_name);
+                showEverything(dbHelper, DataBaseHelper.tableName);
                 finish();
                 startActivity(intentTask);
             }
@@ -70,11 +70,11 @@ public class MainActivity extends AppCompatActivity {
                 dbHelper = new DataBaseHelper(getApplicationContext());
                 String table = "";
                 if (!on_history) {
-                    dbHelper.complete_Task(clickedTask);
-                    table = DataBaseHelper.table_name;
-                    Toast.makeText(getApplicationContext(), constants.task_complete, Toast.LENGTH_SHORT).show();
+                    dbHelper.completeTask(clickedTask);
+                    table = DataBaseHelper.tableName;
+                    Toast.makeText(getApplicationContext(), constants.taskcomplete, Toast.LENGTH_SHORT).show();
                 } else {
-                    table = DataBaseHelper.table_history_name;
+                    table = DataBaseHelper.tableHistoryName;
                 }
                 showEverything(dbHelper, table); // change this to the right table being used
                 return true;
@@ -82,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
         });
         // single and double click
         lv_task.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override //  Edit task
+            @Override // Edit task
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TaskObj clickedTask = (TaskObj) parent.getItemAtPosition(position);
                 dbHelper = new DataBaseHelper(getApplicationContext());
-                task_held = clickedTask;
+                MainActivity.setHeldTask(clickedTask);
                 finish();
                 startActivity(intentTask);
             }
@@ -119,12 +119,12 @@ public class MainActivity extends AppCompatActivity {
                         List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the go to ALL item");
-                            list = dbHelper.getEverything(DataBaseHelper.table_name);
+                            list = dbHelper.getEverything(DataBaseHelper.tableName);
                             btnpopup.setText("All");
                             on_history = false;
                         } else if (item.getItemId() == R.id.item_history) {
                             Log.d("BUTTONS", "User tapped the go to history item");
-                            list = dbHelper.getEverything(DataBaseHelper.table_history_name);
+                            list = dbHelper.getEverything(DataBaseHelper.tableHistoryName);
                             on_history = true;
                             btnpopup.setText("Completed");
                         } else if (item.getItemId() == R.id.item_urgent) {
@@ -173,5 +173,13 @@ public class MainActivity extends AppCompatActivity {
         this.taskAdapter = new ArrayAdapter<TaskObj>(getApplicationContext(),
                 R.layout.lv_color_white, list);
         this.lv_task.setAdapter(taskAdapter);
+    }
+
+    public static void setHeldTask(TaskObj setTask) {
+        taskHeld = setTask;
+    }
+
+    public static TaskObj getHeldTask() {
+        return taskHeld;
     }
 }

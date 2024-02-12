@@ -1,7 +1,5 @@
 package com.example.keeptasks;
 
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlarmManager;
@@ -34,9 +32,9 @@ public class CreateTask extends AppCompatActivity {
     private Button btnDate, btnTime;
     private EditText txtName, txtNote;
     private Switch urgentS, dayBeforeS;
-    private  AlarmManager alarmManager;
+    private AlarmManager alarmManager;
     private PendingIntent pendingIntent;
-    private int year,month,day,hour,minutes;
+    private int year, month, day, hour, minutes;
     private long alarm_repeate = 300000;
     private TaskObj task;
 
@@ -47,8 +45,8 @@ public class CreateTask extends AppCompatActivity {
         // Intent
         Intent intent = new Intent(getApplicationContext(), MainActivity.class); // return to Home Page
         // On Screen Objects
-        Button btndn = (Button) findViewById(R.id.btnalltask); // The Done button
-        Button btncln = (Button) findViewById(R.id.btncancel); // The Cancel button
+        Button btnDone = (Button) findViewById(R.id.btnalltask); // The Done button
+        Button btnCancel = (Button) findViewById(R.id.btncancel); // The Cancel button
         txtName = (EditText) findViewById(R.id.taskfiled);// The Title Field
         urgentS = (Switch) findViewById(R.id.switchurgent);// The Urgent Switch
         txtNote = (EditText) findViewById(R.id.notefiled);// The Note Field
@@ -61,40 +59,44 @@ public class CreateTask extends AppCompatActivity {
         btnTime.setText(timeObj.getCurrentTime());
         // set hints
         txtName.setHintTextColor(Color.WHITE);
-        txtName.setHint("Task Title");
+        txtName.setHint(constants.titleHint);
         txtNote.setHintTextColor(Color.WHITE);
-        txtNote.setHint("Notes");
+        txtNote.setHint(constants.noteHint);
         //
         DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-        task = MainActivity.task_held;
+        task = MainActivity.getHeldTask();
         if (task != null) {
             loadTask(task);
-            dbHelper.complete_Task(task);
-            MainActivity.task_held = null;
+            dbHelper.completeTask(task);
+            MainActivity.setHeldTask(null);
         }
         // Listeners
         android.view.View.OnClickListener donelistener = new View.OnClickListener() { // Done Button Listener
             @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Finish button");
-                String Name = txtName.getText().toString();// Get the Title
-                String Note = txtNote.getText().toString();// Get the Note
-                String Date = btnDate.getText().toString();// Get the Date (Might change this to someother type late)
+                String name = txtName.getText().toString();// Get the Title
+                String note = txtNote.getText().toString();// Get the Note
+                String date = btnDate.getText().toString();// Get the Date (Might change this to someother type late)
                 String time = btnTime.getText().toString();// Get Time
-                Boolean DateBefroe = dayBeforeS.isChecked();// Get Day Before status
+                Boolean dateBefroe = dayBeforeS.isChecked();// Get Day Before status
                 Boolean urgent = urgentS.isChecked();// Get Urgent status
-                if (Name.matches("")) {// if Title is empty
-                    Toast.makeText(getApplicationContext(), constants.name_Empty_Message, Toast.LENGTH_SHORT).show();
+                if (name.matches("")) {// if Title is empty
+                    Toast.makeText(getApplicationContext(), constants.nameEmptyMessage, Toast.LENGTH_SHORT).show();
                 } else {
                     // Added to DataBase
-                    TaskObj task = new TaskObj(0, Name, Date, urgent, DateBefroe, Note, time);
-                    boolean success = dbHelper.addOne(task, DataBaseHelper.table_name);
+                    TaskObj task = new TaskObj(0, name, date, urgent, dateBefroe, note, time);
+                    boolean success = dbHelper.addOne(task, DataBaseHelper.tableName);
 
                     // testing alarm
-                    AlarmReceiver.setDetailsAlarm("channel 1",Name,Note);
-//                    Toast.makeText(getApplicationContext(), "current time" + timeObj.timeInMillis() + "future time" + timeObj.futureTime(dateObj), Toast.LENGTH_SHORT).show();
+                    AlarmReceiver.setDetailsAlarm("channel 1", name, note);
+                    // Toast.makeText(getApplicationContext(), "current time" +
+                    // timeObj.timeInMillis() + "future time" + timeObj.futureTime(dateObj),
+                    // Toast.LENGTH_SHORT).show();
 
-//                    Toast.makeText(getApplicationContext(), "Testing pickers"+dateObj.getYear()+"/"+dateObj.getMonth() +"/"+dateObj.getDay() + " "+timeObj.getHour() +":"+timeObj.getMin()+"", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), "Testing
+                    // pickers"+dateObj.getYear()+"/"+dateObj.getMonth() +"/"+dateObj.getDay() + "
+                    // "+timeObj.getHour() +":"+timeObj.getMin()+"", Toast.LENGTH_SHORT).show();
                     setAlarm(timeObj.futureTime(dateObj)); // change this to desired time to run the alarm
                     //
 
@@ -104,7 +106,7 @@ public class CreateTask extends AppCompatActivity {
             }
         };
         // Listeners
-        android.view.View.OnClickListener cancellistener = new View.OnClickListener() { // Done Button Listener
+        android.view.View.OnClickListener cancelListener = new View.OnClickListener() { // Done Button Listener
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the cancel button");
                 startActivity(intent);
@@ -112,7 +114,7 @@ public class CreateTask extends AppCompatActivity {
             }
         };
 
-        android.view.View.OnClickListener popuplistener = new View.OnClickListener() { // Date Button Listener
+        android.view.View.OnClickListener popupListener = new View.OnClickListener() { // Date Button Listener
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the calender button");
                 initDatePicker();
@@ -120,7 +122,7 @@ public class CreateTask extends AppCompatActivity {
             }
         };
 
-        android.view.View.OnClickListener timelistener = new View.OnClickListener() { // Time Button Listener
+        android.view.View.OnClickListener timeListener = new View.OnClickListener() { // Time Button Listener
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the clock button");
                 initTimePicker();
@@ -128,17 +130,17 @@ public class CreateTask extends AppCompatActivity {
             }
         };
         // set Listener
-        btndn.setOnClickListener(donelistener);
-        btncln.setOnClickListener(cancellistener);
-        btnDate.setOnClickListener(popuplistener);
-        btnTime.setOnClickListener(timelistener);
+        btnDone.setOnClickListener(donelistener);
+        btnCancel.setOnClickListener(cancelListener);
+        btnDate.setOnClickListener(popupListener);
+        btnTime.setOnClickListener(timeListener);
     }
 
-    private void initDatePicker() { // should add to Time class
+    private void initDatePicker() { // should add to Date class
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year_here, int month_here, int day_here) {
-                dateObj.setFutureDate(year_here,month_here,day_here);
+                dateObj.setFutureDate(year_here, month_here, day_here);
                 btnDate.setText(dateObj.makeDateString(dateObj.getDay(), dateObj.getMonth() + 1, dateObj.getYear()));
             }
         };
@@ -150,16 +152,16 @@ public class CreateTask extends AppCompatActivity {
     }
 
     private void initTimePicker() { // should add to Time class
-        TimePickerDialog.OnTimeSetListener timePickerlistener = new TimePickerDialog.OnTimeSetListener() {
+        TimePickerDialog.OnTimeSetListener timePickerListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour_here, int minutes_here) {
-                timeObj.setFutureTime(hour_here,minutes_here);
+                timeObj.setFutureTime(hour_here, minutes_here);
                 btnTime.setText((timeObj.makeTimeString(timeObj.getHour(), timeObj.getMin())));
             }
         };
-         hour = this.cal.get(Calendar.HOUR);
-         minutes = this.cal.get(Calendar.MINUTE);
-        timePickerDialog = new TimePickerDialog(this, timePickerlistener, hour, minutes, true);
+        hour = this.cal.get(Calendar.HOUR);
+        minutes = this.cal.get(Calendar.MINUTE);
+        timePickerDialog = new TimePickerDialog(this, timePickerListener, hour, minutes, true);
         hour = this.cal.get(Calendar.HOUR);
         minutes = this.cal.get(Calendar.MINUTE);
     }
@@ -173,12 +175,15 @@ public class CreateTask extends AppCompatActivity {
         this.txtNote.setText(task.getNote());
     }
 
-    private  void setAlarm(long time){
+    private void setAlarm(long time) {
         alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent testalarm = new Intent(this,AlarmReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(this,0,testalarm, PendingIntent.FLAG_IMMUTABLE);//change reques code to something uniqe
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);//change depending on importance
-        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,time,pendingIntent);
+        Intent testAlarm = new Intent(this, AlarmReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(this, 0, testAlarm, PendingIntent.FLAG_IMMUTABLE);// change reques
+                                                                                                     // code to
+                                                                                                     // something uniqe
+        // alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);//change
+        // depending on importance
+        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, time, pendingIntent);
         AlarmReceiver.notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         AlarmReceiver.activity = CreateTask.this;
     }

@@ -15,42 +15,42 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     // main table
-    public static final String table_name = "Tasks";
-    public static final String COLUMN_id = "Id";
-    public static final String COLUMN_title = "Title";
-    public static final String COLUMN_urgent = "Urgent";
-    public static final String COLUMN_date = "Date";
-    public static final String COLUMN_dayBefore = "DayBefore";
-    public static final String COLUMN_note = "Note";
-    public static final String COLUMN_time = "Time";
+    public static final String tableName = "Tasks";
+    public static final String COLUMNId = "Id";
+    public static final String COLUMNTitle = "Title";
+    public static final String COLUMNUrgent = "Urgent";
+    public static final String COLUMNDate = "Date";
+    public static final String COLUMNDayBefore = "DayBefore";
+    public static final String COLUMNNote = "Note";
+    public static final String COLUMNTime = "Time";
     // history table
-    public static final String table_history_name = "History";
-    public static final String COLUMN_History_id = "Id";
+    public static final String tableHistoryName = "History";
+    public static final String COLUMNHistoryId = "Id";
 
     private TaskObj task;
 
     public DataBaseHelper(Context context) {
-        super(context, constants.DB_name, null, 1);
+        super(context, constants.dbName, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_First_Table = "CREATE TABLE IF NOT EXISTS " + table_name
-                + " (" + COLUMN_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_title + " TEXT, " +
-                COLUMN_urgent + " TEXT," +
-                COLUMN_date + " TEXT, "
-                + COLUMN_dayBefore + " TEXT, "
-                + COLUMN_note + " TEXT, "
-                + COLUMN_time + " TEXT )";
-        String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + table_history_name
-                + " (" + COLUMN_History_id + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_title + " TEXT, " +
-                COLUMN_urgent + " TEXT," +
-                COLUMN_date + " TEXT, "
-                + COLUMN_dayBefore + " TEXT, "
-                + COLUMN_note + " TEXT, "
-                + COLUMN_time + " TEXT )";
+        String create_First_Table = "CREATE TABLE IF NOT EXISTS " + tableName
+                + " (" + COLUMNId + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
+                COLUMNTitle + " TEXT, " +
+                COLUMNUrgent + " TEXT," +
+                COLUMNDate + " TEXT, "
+                + COLUMNDayBefore + " TEXT, "
+                + COLUMNNote + " TEXT, "
+                + COLUMNTime + " TEXT )";
+        String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + tableHistoryName
+                + " (" + COLUMNHistoryId + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
+                COLUMNTitle + " TEXT, " +
+                COLUMNUrgent + " TEXT," +
+                COLUMNDate + " TEXT, "
+                + COLUMNDayBefore + " TEXT, "
+                + COLUMNNote + " TEXT, "
+                + COLUMNTime + " TEXT )";
         db.execSQL(create_First_Table);
         db.execSQL(create_Second_Table);
     }
@@ -63,12 +63,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean addOne(TaskObj task, String table) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_title, task.getTitle());
-        cv.put(COLUMN_urgent, task.getUrgent());
-        cv.put(COLUMN_date, task.getDate());
-        cv.put(COLUMN_dayBefore, task.getBefore());
-        cv.put(COLUMN_note, task.getNote());
-        cv.put(COLUMN_time, task.getTime());
+        cv.put(COLUMNTitle, task.getTitle());
+        cv.put(COLUMNUrgent, task.getUrgent());
+        cv.put(COLUMNDate, task.getDate());
+        cv.put(COLUMNDayBefore, task.getBefore());
+        cv.put(COLUMNNote, task.getNote());
+        cv.put(COLUMNTime, task.getTime());
 
         db.insert(table, null, cv);
         db.close();
@@ -103,7 +103,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         List<TaskObj>[] list_final = new List[2];
         List<com.example.keeptasks.TaskObj> list_urgent = new ArrayList<>();
         List<com.example.keeptasks.TaskObj> list_normal = new ArrayList<>();
-        List<com.example.keeptasks.TaskObj> list_all = getEverything(table_name);
+        List<com.example.keeptasks.TaskObj> list_all = getEverything(tableName);
         int size = list_all.size();
         for (int i = 0; i < size; i++) {
             if (list_all.get(i).getUrgent()) {
@@ -117,12 +117,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return list_final;
     }
 
-    public boolean complete_Task(TaskObj task) {
+    public boolean completeTask(TaskObj task) {
         // add the task to history along side status
-        addOne(task, table_history_name);
+        addOne(task, tableHistoryName);
         // if found in database it will be deleted
         SQLiteDatabase db = this.getWritableDatabase();
-        String delete_Task = "DELETE FROM " + table_name + " WHERE " + COLUMN_id + " = " + task.getId();
+        String delete_Task = "DELETE FROM " + tableName + " WHERE " + COLUMNId + " = " + task.getId();
         Cursor cursor = db.rawQuery(delete_Task, null);
         if (cursor.moveToFirst()) {
             return true;
@@ -130,7 +130,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    public boolean clear_Table(String Table_name) {
+    public boolean clearTable(String Table_name) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("DELETE FROM " + Table_name);
         return true;
@@ -138,7 +138,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public List<TaskObj> search(String query) {
         List<com.example.keeptasks.TaskObj> list_searched = new ArrayList<>();
-        List<com.example.keeptasks.TaskObj> list_all = getEverything(table_name);
+        List<com.example.keeptasks.TaskObj> list_all = getEverything(tableName);
         int size = list_all.size();
         for (int i = 0; i < size; i++) { // go over each task and check if it is a match
             if (list_all.get(i).toString().contains(query)) // check the title

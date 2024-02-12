@@ -33,7 +33,7 @@ public class Settings extends AppCompatActivity {
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
         Button btnclear = (Button) findViewById(R.id.btnclear);
-        btnclear.setText(constants.clear_message);
+        btnclear.setText(constants.clearMessage);
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);
@@ -111,10 +111,10 @@ public class Settings extends AppCompatActivity {
                         DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the Clear All button");
-                            dbHelper.clear_Table(DataBaseHelper.table_name);
+                            dbHelper.clearTable(DataBaseHelper.tableName);
                         } else if (item.getItemId() == R.id.item_history) {
                             Log.d("BUTTONS", "User tapped the Clear History button");
-                            dbHelper.clear_Table(DataBaseHelper.table_history_name);
+                            dbHelper.clearTable(DataBaseHelper.tableHistoryName);
                         }
                         return true;
                     }
