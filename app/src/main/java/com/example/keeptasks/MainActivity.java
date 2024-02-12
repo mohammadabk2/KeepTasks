@@ -44,17 +44,17 @@ public class MainActivity extends AppCompatActivity {
         lv_task = (ListView) findViewById(R.id.lv);
         showEverything(dbHelper, DataBaseHelper.tableName);
         // on Screen
-        Button btnpopup = (Button) findViewById(R.id.btnpopup);
-        Button btnadd = (Button) findViewById(R.id.btnadd);
-        Button btngosetting = (Button) findViewById(R.id.btnsettings);
+        Button btnPopup = (Button) findViewById(R.id.btnpopup);
+        Button btnAdd = (Button) findViewById(R.id.btnadd);
+        Button btnGoSetting = (Button) findViewById(R.id.btnsettings);
         Button btnExit = (Button) findViewById(R.id.btnexit);
-        Button btnsearch = (Button) findViewById(R.id.btnsearch);
+        Button btnSearch = (Button) findViewById(R.id.btnsearch);
         EditText search_box = (EditText) findViewById(R.id.search_filed);
         search_box.setHint(constants.searchHint);
         search_box.setHintTextColor(Color.WHITE);
 
         // add Task
-        android.view.View.OnClickListener addlistener = new View.OnClickListener() {
+        android.view.View.OnClickListener addListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the add button");
                 showEverything(dbHelper, DataBaseHelper.tableName);
@@ -92,14 +92,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         // settings
-        android.view.View.OnClickListener settingslistener = new View.OnClickListener() {
+        android.view.View.OnClickListener settingsListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the go to Settings button");
                 startActivity(intentSettings);
             }
         };
         // Exit app
-        android.view.View.OnClickListener exitlistener = new View.OnClickListener() {
+        android.view.View.OnClickListener exitListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Exit button");
                 finish();
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // Menu button
-        android.view.View.OnClickListener Menulistener = new View.OnClickListener() {
+        android.view.View.OnClickListener MenuListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Menu button");
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
@@ -120,22 +120,22 @@ public class MainActivity extends AppCompatActivity {
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the go to ALL item");
                             list = dbHelper.getEverything(DataBaseHelper.tableName);
-                            btnpopup.setText("All");
+                            btnPopup.setText("All");
                             on_history = false;
                         } else if (item.getItemId() == R.id.item_history) {
                             Log.d("BUTTONS", "User tapped the go to history item");
                             list = dbHelper.getEverything(DataBaseHelper.tableHistoryName);
                             on_history = true;
-                            btnpopup.setText("Completed");
+                            btnPopup.setText("Completed");
                         } else if (item.getItemId() == R.id.item_urgent) {
                             Log.d("BUTTONS", "User tapped the go to Urgent item");
                             list = dbHelper.getSorted()[0];
-                            btnpopup.setText("Urgent");
+                            btnPopup.setText("Urgent");
                             on_history = false;
                         } else if (item.getItemId() == R.id.item_normal) {
                             Log.d("BUTTONS", "User tapped the go to Normal item");
                             list = dbHelper.getSorted()[1];
-                            btnpopup.setText("Normal");
+                            btnPopup.setText("Normal");
                             on_history = false;
                         }
                         showList(list);
@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         // search Listener
-        android.view.View.OnClickListener searchlistener = new View.OnClickListener() {
+        android.view.View.OnClickListener searchListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Search button");
                 dbHelper = new DataBaseHelper(getApplicationContext());
@@ -155,11 +155,11 @@ public class MainActivity extends AppCompatActivity {
         };
 
         // Set Listener
-        btnadd.setOnClickListener(addlistener);
-        btngosetting.setOnClickListener(settingslistener);
-        btnExit.setOnClickListener(exitlistener);
-        btnpopup.setOnClickListener(Menulistener);
-        btnsearch.setOnClickListener(searchlistener);
+        btnAdd.setOnClickListener(addListener);
+        btnGoSetting.setOnClickListener(settingsListener);
+        btnExit.setOnClickListener(exitListener);
+        btnPopup.setOnClickListener(MenuListener);
+        btnSearch.setOnClickListener(searchListener);
     }
 
     // function to update the list view

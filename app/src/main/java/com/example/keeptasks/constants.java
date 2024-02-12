@@ -4,7 +4,7 @@ public class constants {
 
     // about
     public final static String desc = "App to help people keep track of their tasks and manage time";
-    public final static String version = "0.91";
+    public final static String version = "0.921";
 
     // CreateTask
     public final static String taskAddedMessage = "Task Added";

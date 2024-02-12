@@ -1,20 +1,12 @@
 package com.example.keeptasks;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.view.View;
 import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.PopupMenu;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -28,7 +20,7 @@ public class Settings extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         Intent intentabout = new Intent(getApplicationContext(), about.class);
         Intent intentusage = new Intent(getApplicationContext(),Usage.class);
-        Intent intentlist = new Intent(getApplicationContext(),List.class);
+        Intent intentlist = new Intent(getApplicationContext(),lists.class);
 
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
