@@ -27,7 +27,7 @@ public class constants {
 
     // usage
     public final static String usage1 = "Hold to complete a task";
-    public final static String usage2 = "double tap to edit an existing task";
+    public final static String usage2 = "tap to edit an existing task";
 
     // Lists
     public final static String listAll = "all";

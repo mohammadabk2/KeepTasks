@@ -24,8 +24,6 @@ public class Settings extends AppCompatActivity {
 
         // front end
         Button btnexitsetting = (Button) findViewById(R.id.btnexitsettings);
-        Button btnclear = (Button) findViewById(R.id.btnclear);
-        btnclear.setText(constants.clearMessage);
         Button btnimport = (Button) findViewById(R.id.btnimport);
         Button btnexport = (Button) findViewById(R.id.btnexport);
         Button btnabout = (Button) findViewById(R.id.btnaboutapp);
@@ -46,7 +44,6 @@ public class Settings extends AppCompatActivity {
                 Log.d("BUTTONS", "User tapped the Import button");
                 // requestPermission();
                 // TODO:
-
             }
         };
 
@@ -90,33 +87,8 @@ public class Settings extends AppCompatActivity {
             }
         };
 
-
-
-        android.view.View.OnClickListener Menulistener = new View.OnClickListener() {
-            public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Menu button");
-                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
-                popupMenu.getMenuInflater().inflate(R.menu.clearmenue, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        DataBaseHelper dbHelper = new DataBaseHelper(getApplicationContext());
-                        if (item.getItemId() == R.id.item_all) {
-                            Log.d("BUTTONS", "User tapped the Clear All button");
-                            dbHelper.clearTable(DataBaseHelper.tableName);
-                        } else if (item.getItemId() == R.id.item_history) {
-                            Log.d("BUTTONS", "User tapped the Clear History button");
-                            dbHelper.clearTable(DataBaseHelper.tableHistoryName);
-                        }
-                        return true;
-                    }
-                });
-                popupMenu.show();
-            }
-        };
         // set to buttons
         btnexitsetting.setOnClickListener(exitlistener);
-        btnclear.setOnClickListener(Menulistener);
         btnimport.setOnClickListener(importlistener);
         btnexport.setOnClickListener(exportlistener);
         btnabout.setOnClickListener(aboutlistener);

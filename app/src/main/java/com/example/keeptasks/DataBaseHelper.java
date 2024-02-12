@@ -26,6 +26,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     // history table
     public static final String tableHistoryName = "History";
     public static final String COLUMNHistoryId = "Id";
+    // List Table
+    public static final String TableListName = "Lists";
+    public static final String COLUMNLISTS = "List";
+    public static final String COLUMNLISTID = "Id";
 
     private TaskObj task;
 
@@ -35,7 +39,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_First_Table = "CREATE TABLE IF NOT EXISTS " + tableName
+        String createAllTable = "CREATE TABLE IF NOT EXISTS " + tableName
                 + " (" + COLUMNId + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
                 COLUMNTitle + " TEXT, " +
                 COLUMNUrgent + " TEXT," +
@@ -43,7 +47,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMNDayBefore + " TEXT, "
                 + COLUMNNote + " TEXT, "
                 + COLUMNTime + " TEXT )";
-        String create_Second_Table = "CREATE TABLE IF NOT EXISTS " + tableHistoryName
+        String createHistoryTable = "CREATE TABLE IF NOT EXISTS " + tableHistoryName
                 + " (" + COLUMNHistoryId + " INTEGER  PRIMARY KEY AUTOINCREMENT, " +
                 COLUMNTitle + " TEXT, " +
                 COLUMNUrgent + " TEXT," +
@@ -51,8 +55,12 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 + COLUMNDayBefore + " TEXT, "
                 + COLUMNNote + " TEXT, "
                 + COLUMNTime + " TEXT )";
-        db.execSQL(create_First_Table);
-        db.execSQL(create_Second_Table);
+        String createListTable = "CREATE TABLE IF NOT EXISTS " + TableListName
+                + " (" + COLUMNLISTID + "  INTEGER  PRIMARY KEY AUTOINCREMENT,  " +
+                COLUMNLISTS + " TEXT )";
+        db.execSQL(createAllTable);
+        db.execSQL(createHistoryTable);
+        db.execSQL(createListTable);
     }
 
     @Override
@@ -145,5 +153,40 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 list_searched.add(list_all.get(i));
         }
         return list_searched;
+    }
+
+    public boolean addToList(String listToAdd) {
+        // TODO: make sure list doenst already exist
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMNLISTS, listToAdd);
+        db.insert(TableListName, null, cv);
+        db.close();
+        return true;
+    }
+
+    public ArrayList<String> getList() {
+        ArrayList listOfLists = new ArrayList<String>();
+        String read_Table = "SELECT * FROM " + TableListName;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(read_Table, null);
+        if (cursor.moveToFirst()) {
+            do {
+                listOfLists.add(cursor.getString(1));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return listOfLists;
+    }
+
+    public boolean removeFromList(int index) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String delete_Task = "DELETE FROM " + TableListName + " WHERE " + COLUMNLISTID + " = " + index;
+        Cursor cursor = db.rawQuery(delete_Task, null);
+        if (cursor.moveToFirst()) {
+            return true;
+        }
+        return false;
     }
 }

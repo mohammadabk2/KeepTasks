@@ -14,10 +14,10 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="40dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_delete"
-        app:layout_constraintBottom_toTopOf="@+id/btnclear"
+        app:layout_constraintBottom_toTopOf="@+id/btnaddlist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txttitle"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,34 +25,17 @@
     <TextView
         android:id="@+id/txttitle"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="54dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="13dp"
-        android:layout_marginBottom="28dp"
         android:gravity="center"
         android:text="Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnclear"
         app:layout_constraintEnd_toStartOf="@+id/btnexitsettings"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnclear"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="11dp"
-        android:layout_marginEnd="11dp"
-        android:gravity="center"
-        android:text="Clear Hisotry"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btnaddlist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnexitsettings" />
 
     <Button
         android:id="@+id/btnimport"
@@ -73,7 +56,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="3dp"
         android:layout_marginEnd="3dp"
-        android:layout_marginBottom="184dp"
+        android:layout_marginBottom="183dp"
         android:gravity="center"
         android:text="Export (coming soon)"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -87,8 +70,8 @@
         android:id="@+id/btnaboutapp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="13dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="80dp"
         android:gravity="center"
         android:text="About Tasks"
@@ -105,8 +88,9 @@
         android:id="@+id/btnusage"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="9dp"
-        android:layout_marginEnd="9dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="57dp"
         android:text="Usage"
         app:layout_constraintBottom_toTopOf="@+id/btnimport"
         app:layout_constraintEnd_toEndOf="parent"
@@ -115,20 +99,16 @@
 
     <Button
         android:id="@+id/btnaddlist"
-        android:layout_width="0dp"
+        android:layout_width="405dp"
         android:layout_height="0dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginBottom="6dp"
         android:gravity="center"
-        android:text="Add List"
+        android:text="Manage lists"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnusage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnclear" />
+        app:layout_constraintEnd_toEndOf="@+id/txttitle"
+        app:layout_constraintStart_toEndOf="@+id/txttitle"
+        app:layout_constraintTop_toBottomOf="@+id/btnexitsettings" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

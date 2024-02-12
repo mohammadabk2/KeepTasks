@@ -13,42 +13,67 @@
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="6dp"
-        android:layout_marginBottom="59dp"
+        android:layout_marginBottom="55dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:icon="@android:drawable/ic_delete"
-        app:layout_constraintBottom_toTopOf="@+id/btnaddlisttoist"
+        app:layout_constraintBottom_toTopOf="@+id/listtoadd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnaddlisttoist"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="6dp"
-        android:layout_marginBottom="563dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="5dp"
         android:text="Add list"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/listtoadd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/listtoadd"
-        app:layout_constraintTop_toBottomOf="@+id/btnexitaddlist" />
+        app:layout_constraintStart_toEndOf="@+id/listtoadd" />
 
     <EditText
         android:id="@+id/listtoadd"
         android:layout_width="0dp"
-        android:layout_height="61dp"
+        android:layout_height="0dp"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="111dp"
         android:layout_marginEnd="3dp"
+        android:layout_marginBottom="36dp"
         android:ems="10"
         android:gravity="center"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btnremovelist"
         app:layout_constraintEnd_toStartOf="@+id/btnaddlisttoist"
-        app:layout_constraintHorizontal_bias="0.088"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnexitaddlist" />
+
+    <Button
+        android:id="@+id/btnclearlists"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="378dp"
+        android:text="Clear Hisotry"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnremovelist" />
+
+    <Button
+        android:id="@+id/btnremovelist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="42dp"
+        android:text="Remove List"
+        app:layout_constraintBottom_toTopOf="@+id/btnclearlists"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listtoadd" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
