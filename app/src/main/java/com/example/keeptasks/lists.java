@@ -9,31 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
 
 public class lists extends AppCompatActivity {
-    // private ArrayList<String> listOfLists;
-
-    // public lists() {
-    // listOfLists = new ArrayList<String>();
-    // listOfLists.add(constants.listAll);
-    // listOfLists.add(constants.listHistory);
-    // }
-
-    // public ArrayList<String> getListOfLists() {
-    // return this.listOfLists;
-    // }
-
-    // public void addToList(String listName) {
-    // this.listOfLists.add(listName);
-    // }
-
-    // public void removeFromList(String listName) {
-    // this.listOfLists.remove(listName);
-    // }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,28 +67,7 @@ public class lists extends AppCompatActivity {
         android.view.View.OnClickListener removeListListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Remove list button");
-                // create all the menu items
-                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
-                popupMenu.getMenuInflater().inflate(R.menu.listmenue, popupMenu.getMenu());
-                ArrayList list = dbHelper.getList();
-                for (int i = 0; i < list.size(); i++) {// adds the lists to the menu
-                    popupMenu.getMenu().add(list.get(i).toString());
-                }
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        for (int i = 0; i < list.size(); i++) {
-                            if (item.getTitle().equals(list.get(i).toString())) {
-                                dbHelper.removeFromList(item.getTitle().toString());
-                                popupMenu.getMenu().removeItem(i);
-                                list.remove(i);
-                                break;
-                            }
-                        }
-                        return true;
-                    }
-                });
-                popupMenu.show();
+                menuPopUp.listPopup(getApplicationContext(),v);
             }
         };
         btnExit.setOnClickListener(exitListener);
