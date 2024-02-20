@@ -156,6 +156,9 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     }
 
     public boolean addToList(String listToAdd) {
+        if(listToAdd.isEmpty()){
+            return false;
+        }
         ArrayList list = getList();
         for(int i =0;i<list.size();i++){
             if(listToAdd.equals(list.get(i).toString())){

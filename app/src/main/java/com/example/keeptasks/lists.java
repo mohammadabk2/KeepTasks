@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class lists extends AppCompatActivity {
 
+    public static String nameOfList;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addlist);
@@ -67,7 +69,13 @@ public class lists extends AppCompatActivity {
         android.view.View.OnClickListener removeListListener = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Remove list button");
-                menuPopUp.listPopup(getApplicationContext(),v);
+                menuPopUp.listPopupDelete(getApplicationContext(),v);
+                //testing
+//                menuPopUp.listPopupChoose(getApplicationContext(),v);
+//                if(nameOfList == null){
+//                    menuPopUp.listPopupChoose(getApplicationContext(),v);
+//                }
+//                Log.d("BUTTONS", ""+nameOfList);
             }
         };
         btnExit.setOnClickListener(exitListener);
