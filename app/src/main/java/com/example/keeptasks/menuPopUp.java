@@ -37,17 +37,18 @@ public class menuPopUp {
         // create all the menu items
         DataBaseHelper dbHelper = new DataBaseHelper(context);
         PopupMenu popupMenu = new PopupMenu(context, v);
-        popupMenu.getMenuInflater().inflate(R.menu.listmenue, popupMenu.getMenu());
-        ArrayList<String> list = dbHelper.getList();
+        popupMenu.getMenuInflater().inflate(R.menu.listmenue, popupMenu.getMenu());        ArrayList<String> list = dbHelper.getList();
+        popupMenu.getMenu().add("All");
         for (int i = 0; i < list.size(); i++) {// adds the lists to the menu
             popupMenu.getMenu().add(list.get(i));
         }
+        popupMenu.getMenu().add("History");
         popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 for (int i = 0; i < list.size(); i++) {
                     if (item.getTitle().equals(list.get(i))) {
-                        lists.nameOfList =(String) item.getTitle();
+                        MainActivity.nameOfList =(String) item.getTitle();
                         break;
                     }
                 }

@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter taskAdapter;
     private boolean on_history = false;
     private static TaskObj taskHeld;
+    public static String nameOfList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,40 +110,43 @@ public class MainActivity extends AppCompatActivity {
         // Menu button
         android.view.View.OnClickListener MenuListener = new View.OnClickListener() {
             public void onClick(View v) {
-                Log.d("BUTTONS", "User tapped the Menu button");
-                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
-                popupMenu.getMenuInflater().inflate(R.menu.sortmenue, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        dbHelper = new DataBaseHelper(getApplicationContext());
-                        List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
-                        if (item.getItemId() == R.id.item_all) {
-                            Log.d("BUTTONS", "User tapped the go to ALL item");
-                            list = dbHelper.getEverything(DataBaseHelper.tableName);
-                            btnPopup.setText("All");
-                            on_history = false;
-                        } else if (item.getItemId() == R.id.item_history) {
-                            Log.d("BUTTONS", "User tapped the go to history item");
-                            list = dbHelper.getEverything(DataBaseHelper.tableHistoryName);
-                            on_history = true;
-                            btnPopup.setText("Completed");
-                        } else if (item.getItemId() == R.id.item_urgent) {
-                            Log.d("BUTTONS", "User tapped the go to Urgent item");
-                            list = dbHelper.getSorted()[0];
-                            btnPopup.setText("Urgent");
-                            on_history = false;
-                        } else if (item.getItemId() == R.id.item_normal) {
-                            Log.d("BUTTONS", "User tapped the go to Normal item");
-                            list = dbHelper.getSorted()[1];
-                            btnPopup.setText("Normal");
-                            on_history = false;
-                        }
-                        showList(list);
-                        return true;
-                    }
-                });
-                popupMenu.show();
+                Log.d("BUTTONS", "User tapped the Sort Menu button");
+                menuPopUp.listPopupChoose(getApplicationContext(),v);
+                //TODO: add function to this
+                // the nameOfList get the name of the clicked list now add something to databasehelper to use
+//                PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
+//                popupMenu.getMenuInflater().inflate(R.menu.sortmenue, popupMenu.getMenu());
+//                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        dbHelper = new DataBaseHelper(getApplicationContext());
+//                        List<com.example.keeptasks.TaskObj> list = new ArrayList<>();
+//                        if (item.getItemId() == R.id.item_all) {
+//                            Log.d("BUTTONS", "User tapped the go to ALL item");
+//                            list = dbHelper.getEverything(DataBaseHelper.tableName);
+//                            btnPopup.setText("All");
+//                            on_history = false;
+//                        } else if (item.getItemId() == R.id.item_history) {
+//                            Log.d("BUTTONS", "User tapped the go to history item");
+//                            list = dbHelper.getEverything(DataBaseHelper.tableHistoryName);
+//                            on_history = true;
+//                            btnPopup.setText("Completed");
+//                        } else if (item.getItemId() == R.id.item_urgent) {
+//                            Log.d("BUTTONS", "User tapped the go to Urgent item");
+//                            list = dbHelper.getSorted()[0];
+//                            btnPopup.setText("Urgent");
+//                            on_history = false;
+//                        } else if (item.getItemId() == R.id.item_normal) {
+//                            Log.d("BUTTONS", "User tapped the go to Normal item");
+//                            list = dbHelper.getSorted()[1];
+//                            btnPopup.setText("Normal");
+//                            on_history = false;
+//                        }
+//                        showList(list);
+//                        return true;
+//                    }
+//                });
+//                popupMenu.show();
             }
         };
         // search Listener

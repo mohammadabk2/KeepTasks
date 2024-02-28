@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class lists extends AppCompatActivity {
 
-    public static String nameOfList;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +43,7 @@ public class lists extends AppCompatActivity {
                 listName.setText("");
             }
         };
-        android.view.View.OnClickListener MenuListener = new View.OnClickListener() {
+        android.view.View.OnClickListener MenuListenerClear = new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("BUTTONS", "User tapped the Clear lists button");
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(), v);
@@ -55,11 +54,12 @@ public class lists extends AppCompatActivity {
                         if (item.getItemId() == R.id.item_all) {
                             Log.d("BUTTONS", "User tapped the Clear All button");
                             dbHelper.clearTable(DataBaseHelper.tableName);
-                        } else if (item.getItemId() == R.id.item_history) {
+                        } else if (item.getItemId() == R.id.item_history - 2) { // minus 2 to account for the difference from having item all and urgent
                             Log.d("BUTTONS", "User tapped the Clear History button");
                             dbHelper.clearTable(DataBaseHelper.tableHistoryName);
                         }
                         return true;
+
                     }
                 });
                 popupMenu.show();
@@ -80,7 +80,7 @@ public class lists extends AppCompatActivity {
         };
         btnExit.setOnClickListener(exitListener);
         btnAddList.setOnClickListener(addListListener);
-        btnClear.setOnClickListener(MenuListener);
+        btnClear.setOnClickListener(MenuListenerClear);
         btnRemoveList.setOnClickListener(removeListListener);
     }
 }
